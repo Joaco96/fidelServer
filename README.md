@@ -17,17 +17,24 @@ Este documento describe la estructura del proyecto y las tecnologías utilizadas
 ```
 /backend
 │── /src
-│   │── /config       # Configuración global (DB, Auth0, CORS, etc.)
-│   │── /controllers  # Controladores que manejan la lógica de cada endpoint
-│   │── /models       # Modelos de la BD (usando Prisma/Sequelize/TypeORM)
-│   │── /routes       # Definición de rutas (API endpoints)
-│   │── /services     # Lógica de negocio independiente de los controladores
-│   │── /middlewares  # Middlewares como autenticación, validaciones, logs
-│   │── /utils        # Funciones utilitarias reutilizables
-│   │── /tests        # Pruebas unitarias e integración
-│   │── index.js      # Archivo principal que arranca el servidor
-│── /migrations       # Archivos de migraciones de la base de datos
-│── .env              # Variables de entorno
-│── package.json      # Dependencias y scripts del proyecto
-│── README.md         # Documentación inicial
+│   │── /domain          # Capa de dominio
+│   │   │── /entities    # Entidades (clases con reglas de negocio)
+│   │   │── /repositories # Interfaces de los repositorios
+│   │── /application     # Capa de aplicación
+│   │   │── /use-cases   # Casos de uso de la aplicación
+│   │── /infrastructure  # Capa de infraestructura
+│   │   │── /db          # Configuración de la BD (Prisma, Sequelize, etc.)
+│   │   │── /repositories # Implementaciones de los repositorios
+│   │── /presentation    # Capa de presentación (API)
+│   │   │── /controllers # Controladores que manejan la API
+│   │   │── /routes      # Definición de rutas
+│   │   │── /middlewares # Middlewares de autenticación, validaciones, etc.
+│   │── /config          # Configuración general (DB, Auth0, CORS, etc.)
+│   │── /utils           # Funciones utilitarias reutilizables
+│   │── /tests           # Pruebas unitarias e integración
+│   │── index.js         # Archivo principal que arranca el servidor
+│── /migrations          # Archivos de migraciones de la base de datos
+│── .env                 # Variables de entorno
+│── package.json         # Dependencias y scripts del proyecto
+│── README.md            # Documentación inicial
 ```
