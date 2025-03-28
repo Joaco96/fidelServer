@@ -25,6 +25,7 @@ Este documento describe la estructura del proyecto y las tecnologías utilizadas
 │   │── /infrastructure  # Capa de infraestructura
 │   │   │── /db          # Configuración de la BD (Prisma, Sequelize, etc.)
 │   │   │── /repositories # Implementaciones de los repositorios
+│   │   │── /mappers     # Adaptador para convertir ambos modelos (dominio y db)
 │   │── /presentation    # Capa de presentación (API)
 │   │   │── /controllers # Controladores que manejan la API
 │   │   │── /routes      # Definición de rutas
