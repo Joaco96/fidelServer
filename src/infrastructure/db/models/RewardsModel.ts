@@ -1,7 +1,5 @@
 import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../sequelize";
-import { RedemptionsModel } from "./RedemptionsModel";
-import { StockModel } from "./StockModel";
 
 export class RewardsModel extends Model {}
 
@@ -28,16 +26,6 @@ RewardsModel.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    created_at: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
-    },
   },
   { sequelize, modelName: "Rewards" }
 );
-
-RewardsModel.hasMany(RedemptionsModel, { foreignKey: "reward_id"});
-RedemptionsModel.belongsTo(RewardsModel, { foreignKey: "reward_id"});
-
-RewardsModel.hasMany(StockModel, { foreignKey: "stock_id"});
-StockModel.belongsTo(RewardsModel, { foreignKey: "stock_id"});

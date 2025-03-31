@@ -1,12 +1,9 @@
 import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../sequelize";
-import { RedemptionsModel } from "./RedemptionsModel";
-import { PointsModel } from "./PointsModel";
-import { TicketsModel } from "./TicketsModel";
 
-export class UserModel extends Model {}
+export class UsersModel extends Model {}
 
-UserModel.init(
+UsersModel.init(
   {
     id: {
       type: DataTypes.UUID,
@@ -36,19 +33,7 @@ UserModel.init(
       type: DataTypes.INTEGER,
       defaultValue: 0,
     },
-    created_at: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
-    },
   },
-  { sequelize, modelName: "User" }
+  { sequelize, modelName: "Users" }
 );
 
-UserModel.hasMany(RedemptionsModel, { foreignKey: "user_id"});
-RedemptionsModel.belongsTo(UserModel, { foreignKey: "user_id"});
-
-UserModel.hasMany(PointsModel, { foreignKey: "user_id"});
-PointsModel.belongsTo(UserModel, { foreignKey: "user_id"});
-
-UserModel.hasMany(TicketsModel, { foreignKey: "user_id"});
-TicketsModel.belongsTo(UserModel, { foreignKey: "user_id"});

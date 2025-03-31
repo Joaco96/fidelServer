@@ -12,7 +12,10 @@ export const sequelize = new Sequelize(databaseUrl, {
       rejectUnauthorized: false, // Evita errores de SSL si es necesario
     },
   },
+  logging: false,
 });
+
+import "../db/models"; 
 
 // Función para probar la conexión
 export const testDBConnection = async () => {

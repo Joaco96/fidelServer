@@ -1,9 +1,9 @@
 import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../sequelize";
 
-export class StockModel extends Model {}
+export class StocksModel extends Model {}
 
-StockModel.init(
+StocksModel.init(
   {
     id: {
       type: DataTypes.UUID,
@@ -11,7 +11,7 @@ StockModel.init(
       primaryKey: true,
     },
     reward_id: {
-      type: DataTypes.STRING,
+      type: DataTypes.UUID,
       allowNull: false,
     },
     quantity: {
@@ -22,10 +22,6 @@ StockModel.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    created_at: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
-    },
   },
-  { sequelize, modelName: "Stock" }
+  { sequelize, modelName: "Stocks" }
 );

@@ -15,16 +15,12 @@ RedemptionsModel.init(
       allowNull: false,
     },
     reward_id: {
-      type: DataTypes.STRING,
+      type: DataTypes.UUID,
       allowNull: false,
     },
     points_used: {
       type: DataTypes.INTEGER,
       allowNull: false,
-    },
-    created_at: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
     },
   },
   { sequelize, modelName: "Redemptions" }

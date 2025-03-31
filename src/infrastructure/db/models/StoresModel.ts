@@ -1,6 +1,5 @@
 import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../sequelize";
-import { TicketsModel } from "./TicketsModel";
 
 export class StoresModel extends Model {}
 
@@ -26,6 +25,3 @@ StoresModel.init(
   },
   { sequelize, modelName: "Stores" }
 );
-
-StoresModel.hasMany(TicketsModel, { foreignKey: "stores_id"});
-TicketsModel.belongsTo(StoresModel, { foreignKey: "stores_id"});
