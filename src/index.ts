@@ -3,10 +3,13 @@ import { sequelize, testDBConnection } from "./infrastructure/db/sequelize";
 import serverConfig from "./config/server.config";
 import routesV1 from "./presentation/routes/V1/index";
 import { seedRoles } from "./infrastructure/seeders/seedRoles";
+import swaggerUi from "swagger-ui-express";
+import { generateOpenApiDocs } from "./presentation/swagger/swagger";
 
 const app = express();
 app.use(express.json());
 app.use("/api/v1", routesV1);
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(generateOpenApiDocs()));
 
 const PORT = serverConfig.port || 3000;
 const bootstrapServer = async () => {

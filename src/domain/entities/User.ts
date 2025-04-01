@@ -1,14 +1,15 @@
 import { UUID } from "crypto";
 import { RoleIds } from "./Role";
 import { z } from "zod";
+import { extendZodWithOpenApi } from "@asteasolutions/zod-to-openapi";
+
+extendZodWithOpenApi(z);
 
 export const UserSchema = z.object({
-  name: z.string().min(1, "El nombre no puede estar vacío"),
-  email: z.string().email("Email inválido"),
-  password: z.string().min(8, "La contraseña debe tener al menos 8 caracteres"),
+  name: z.string().min(1, "El nombre no puede estar vacío").openapi({ type: "string" }),
+  email: z.string().email("Email inválido").openapi({ type: "string" }),
+  password: z.string().min(8, "La contraseña debe tener al menos 8 caracteres").openapi({ type: "string" }),
 });
-
-export type UserProps = z.infer<typeof UserSchema>;
 
 export class User {
   constructor(
