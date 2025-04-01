@@ -22,6 +22,7 @@ const bootstrapServer = async () => {
   //     console.log(`🔎 Estructura de ${table}:`, description);
   //   }
   // })();
+  
   // const foreignKeys = await sequelize.getQueryInterface().getForeignKeysForTables(["users"]);
   // console.log(foreignKeys);
 
