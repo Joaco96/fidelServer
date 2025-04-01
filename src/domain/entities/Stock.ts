@@ -1,9 +1,12 @@
+import { UUID } from "crypto";
+
 export class Stock {
   constructor(
-    public id: string,
-    public reward_id: string,
+    public id: UUID,
+    public reward_id: UUID,
     public quantity: number,
     public type: string,
-    public created_at: Date = new Date()
+    public created_at: Date,
+    public updated_at: Date,
   ) {}
 }

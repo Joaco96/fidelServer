@@ -1,9 +1,12 @@
+import { UUID } from "crypto";
+
 export class Redemptions {
   constructor(
-    public id: string,
-    public user_id: string,
-    public reward_id: string,
+    public id: UUID,
+    public user_id: UUID,
+    public reward_id: UUID,
     public points_used: number,
-    public created_at: Date = new Date()
+    public created_at: Date,
+    public updated_at: Date,
   ) {}
 }
