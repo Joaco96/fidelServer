@@ -10,22 +10,12 @@ const PORT = serverConfig.port || 3000;
 const bootstrapServer = async () => {
   await testDBConnection();  // Verifica la conexión
 
-  await sequelize.sync({ force: true });  // Sincroniza modelos con la BD
+  await sequelize.sync({ force: false })
+    .catch((err: any) => console.log(`❌ Error conectando a PostgreSQL: ${err}`));  // Sincroniza modelos con la BD
   console.log("📌 Base de datos sincronizada");
 
-  // (async () => {
-  //   const tables = Object.keys(sequelize.models);
-  //   console.log("📌 Modelos detectados en Sequelize:", tables);
-  
-  //   for (const table of tables) {
-  //     const description = await sequelize.getQueryInterface().describeTable(table);
-  //     console.log(`🔎 Estructura de ${table}:`, description);
-  //   }
-  // })();
-  // const foreignKeys = await sequelize.getQueryInterface().getForeignKeysForTables(["users"]);
-  // console.log(foreignKeys);
-
-  app.listen(PORT, () => {
+  app.listen(PORT, (err) => {
+    if(err) return console.log(`❌ Error iniciando el servidor: ${err}`);
     console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
   });
 };
