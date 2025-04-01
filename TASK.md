@@ -9,7 +9,6 @@
 **Criterios de Aceptación:**  
 - El usuario puede registrarse con correo/contraseña o con Google/Facebook mediante Auth0.  
 - Se debe validar que el correo no esté duplicado.  
-- Se envía un correo de verificación si se usa email/password.  
 
 ### 🟢 **HU-02: Inicio de Sesión**  
 **Como** usuario registrado, **quiero** iniciar sesión en la aplicación, **para** acceder a mis puntos y beneficios.  

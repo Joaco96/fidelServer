@@ -1,4 +1,4 @@
-import { DataTypes, Model } from "sequelize";
+import { DataTypes, InferAttributes, InferCreationAttributes, Model } from "sequelize";
 import { sequelize } from "../sequelize";
 
 export class UsersModel extends Model {}
@@ -15,6 +15,10 @@ UsersModel.init(
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
+    },
+    role_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
     },
     name: {
       type: DataTypes.STRING,

@@ -5,7 +5,5 @@ export class Stock {
     public id: UUID,
     public reward_id: UUID,
     public quantity: number,
-    public created_at: Date,
-    public updated_at: Date,
   ) {}
 }
