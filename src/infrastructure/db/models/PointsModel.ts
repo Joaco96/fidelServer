@@ -3,8 +3,8 @@ import { sequelize } from "../sequelize";
 import { UUID } from "crypto";
 
 export class PointsModel extends Model {
-  amount!: number | undefined;
-  user_id!: UUID | undefined;
+  amount: number | undefined;
+  user_id: UUID | undefined;
 }
 
 PointsModel.init(
@@ -21,10 +21,6 @@ PointsModel.init(
     amount: {
       type: DataTypes.INTEGER,
       allowNull: false,
-    },
-    created_at: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
     },
   },
   { sequelize, modelName: "Points" }
