@@ -1,10 +1,13 @@
+import { UUID } from "crypto";
+
 export class Tickets {
   constructor(
-    public id: string,
-    public user_id: string,
-    public store_id: string,
+    public id: UUID,
+    public user_id: UUID,
+    public store_id: UUID,
     public amount_spent: number,
     public points_earned: number,
-    public created_at: Date = new Date()
+    public created_at: Date,
+    public updated_at: Date,
   ) {}
 }

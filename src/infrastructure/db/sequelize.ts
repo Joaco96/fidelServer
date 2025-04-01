@@ -2,17 +2,17 @@ import { Dialect, Sequelize } from "sequelize";
 import dbConfig from "../../config/db.config";
 
 // Usamos la connection string desde las variables de entorno (o directamente)
-const databaseUrl = dbConfig.url || "postgres://user:password@localhost:5432/mydb";
+const databaseUrl = dbConfig.url || "";
 
 export const sequelize = new Sequelize(databaseUrl, {
-  dialect: dbConfig.dialect as Dialect || "postgres",
+  dialect: dbConfig.dialect as Dialect || "",
   dialectOptions: {
     ssl: {
-      require: true, // Necesario si estás usando una base de datos en la nube (Ej. Heroku)
-      rejectUnauthorized: false, // Evita errores de SSL si es necesario
+      require: dbConfig.sslRequire, // Necesario si estás usando una base de datos en la nube (Ej. Heroku)
+      rejectUnauthorized: dbConfig.sslRejectUnauthorized, // Evita errores de SSL si es necesario
     },
   },
-  logging: false,
+  logging: dbConfig.logging,
 });
 
 import "../db/models"; 
