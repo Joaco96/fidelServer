@@ -1,7 +1,14 @@
 import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../sequelize";
+import { UUID } from "crypto";
 
-export class TicketsModel extends Model {}
+export class TicketsModel extends Model {
+  declare id: UUID;
+  declare user_id: UUID;
+  declare store_id: UUID;
+  declare amount_spent: number;
+  declare points_earned: number;
+}
 
 TicketsModel.init(
   {

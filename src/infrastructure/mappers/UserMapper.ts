@@ -1,4 +1,3 @@
-import { InferAttributes } from "sequelize";
 import { User } from "../../domain/entities/User";
 import { UsersModel } from "../db/models/UsersModel";
 
@@ -9,7 +8,7 @@ export class UserMapper {
     return new User(id, auth0_id,role_id, name, email, password, points_balance);
   }
   // Convierte una entidad de dominio a un objeto compatible con Sequelize
-  static toPersistence(user: User): Partial<InferAttributes<UsersModel>> {
+  static toPersistence(user: User): Partial<UsersModel> {
     return {
       id: user.id,
       name: user.name,

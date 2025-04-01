@@ -1,7 +1,11 @@
 import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../sequelize";
+import { UUID } from "crypto";
 
-export class RoleModel extends Model {}
+export class RoleModel extends Model {
+  declare id: UUID;
+  declare name: string;
+}
 
 RoleModel.init(
   {

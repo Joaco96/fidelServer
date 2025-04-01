@@ -1,9 +1,11 @@
 import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../sequelize";
+import { UUID } from "crypto";
 
 export class StocksModel extends Model {
-  quantity: number | undefined;
-  reward_id: unknown;
+  declare id: UUID;
+  declare reward_id: UUID;
+  declare quantity: number;
 }
 
 StocksModel.init(

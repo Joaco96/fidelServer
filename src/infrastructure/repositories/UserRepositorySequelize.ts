@@ -6,7 +6,7 @@ import { UserMapper } from "../mappers/UserMapper";
 export class UserRepositorySequelize implements UserRepository {
   async save(user: User): Promise<User> {
     try {
-      const createdUser = await UsersModel.create({ ...user });
+      const createdUser = await UsersModel.create(UserMapper.toPersistence(user));
       return UserMapper.toDomain(createdUser); // Devuelve la entidad creada
     } catch (error) {
       console.error("Error al guardar el usuario:", error);

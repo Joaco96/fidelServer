@@ -1,7 +1,13 @@
 import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../sequelize";
+import { UUID } from "crypto";
 
-export class RedemptionsModel extends Model {}
+export class RedemptionsModel extends Model {
+  declare id: UUID;
+  declare user_id: UUID;
+  declare reward_id: UUID;
+  declare points_used: number;
+}
 
 RedemptionsModel.init(
   {

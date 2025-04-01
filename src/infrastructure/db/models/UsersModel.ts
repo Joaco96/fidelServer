@@ -1,7 +1,17 @@
-import { DataTypes, InferAttributes, InferCreationAttributes, Model } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../sequelize";
+import { RoleIds } from "../../../domain/entities/Role";
+import { UUID } from "crypto";
 
-export class UsersModel extends Model {}
+export class UsersModel extends Model {
+  declare id: UUID;
+  declare name: string;
+  declare email: string;
+  declare password: string;
+  declare points_balance: number;
+  declare role_id: RoleIds;
+  declare auth0_id: string;
+}
 
 UsersModel.init(
   {

@@ -1,7 +1,13 @@
 import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../sequelize";
+import { UUID } from "crypto";
 
-export class StoresModel extends Model {}
+export class StoresModel extends Model {
+  declare id: UUID;
+  declare name: string;
+  declare location: string;
+  declare contact: string;
+}
 
 StoresModel.init(
   {
