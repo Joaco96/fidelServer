@@ -15,7 +15,7 @@ export const sequelize = new Sequelize(databaseUrl, {
   logging: dbConfig.logging,
 });
 
-import "../db/models"; 
+import "../db/models";
 
 // Función para probar la conexión
 export const testDBConnection = async () => {
