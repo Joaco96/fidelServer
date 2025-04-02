@@ -1,16 +1,17 @@
-import { UserSchema } from "../../domain/entities/User";
 import { OpenAPIRegistry, OpenApiGeneratorV3 } from "@asteasolutions/zod-to-openapi";
 import { userRegistry } from "./path_registry/users";
+import { CreateUserSchema, GetUserSchema } from "../../application/schemas/UserSchema";
 
 
 export function generateOpenApiDocs() {
   const registry = new OpenAPIRegistry();
 
   // Registrar rutas
-  registry.registerPath(userRegistry);
+  userRegistry.forEach(r => registry.registerPath(r));
   
   // Registrar esquemas
-  registry.register("User", UserSchema);
+  registry.register("User", GetUserSchema);
+  registry.register("CreateUser", CreateUserSchema);
 
   // Definir la documentación OpenAPI
   const generator = new OpenApiGeneratorV3(registry.definitions);

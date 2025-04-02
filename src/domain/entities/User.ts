@@ -1,15 +1,6 @@
 import { UUID } from "crypto";
 import { RoleIds } from "./Role";
-import { z } from "zod";
-import { extendZodWithOpenApi } from "@asteasolutions/zod-to-openapi";
-
-extendZodWithOpenApi(z);
-
-export const UserSchema = z.object({
-  name: z.string().min(1, "El nombre no puede estar vacío").openapi({ type: "string" }),
-  email: z.string().email("Email inválido").openapi({ type: "string" }),
-  password: z.string().min(8, "La contraseña debe tener al menos 8 caracteres").openapi({ type: "string" }),
-});
+import { UserSchema } from "../../application/schemas/UserSchema";
 
 export class User {
   constructor(
@@ -21,12 +12,16 @@ export class User {
     public password: string,
     public points_balance: number,
   ) {
-    const validatedData = UserSchema.safeParse({name, email, password});
+    const validatedData = UserSchema.safeParse({id, auth0_id, role_id, name, email, password, points_balance});
     if (!validatedData.success) {
       throw new Error("Invalid user data: " + validatedData.error.errors.map(e => e.message).join(", "));
     }
+    this.id = validatedData.data.id as UUID;
+    this.auth0_id = validatedData.data.auth0_id;
+    this.role_id = validatedData.data.role_id;
     this.name = validatedData.data.name;
     this.email = validatedData.data.email;
     this.password = validatedData.data.password;
+    this.points_balance = validatedData.data.points_balance;
   }
 }
