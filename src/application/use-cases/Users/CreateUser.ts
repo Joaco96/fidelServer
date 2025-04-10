@@ -6,6 +6,9 @@ export class CreateUser {
   constructor(private userRepository: UserRepository) {}
 
   async execute(user: User): Promise<User> {
+    const foundUser = await this.userRepository.findByEmail(user.email);
+    if (foundUser) throw new Error("El email ya esta en uso");
+
     const hashedPassword = await hashPassword(user.password);
 
     const newUser = new User(

@@ -13,8 +13,8 @@
 ### 🟢 **HU-02: Inicio de Sesión**  [X]
 **Como** usuario registrado, **quiero** iniciar sesión en la aplicación, **para** acceder a mis puntos y beneficios.  
 **Criterios de Aceptación:**  
-- El usuario debe poder iniciar sesión con correo/contraseña o redes sociales.  
-- Se muestra un mensaje de error si las credenciales son incorrectas.  
+- El usuario debe poder iniciar sesión con correo/contraseña.  
+- Se muestra un mensaje de error si las credenciales son incorrectas.
 
 ---  
 
