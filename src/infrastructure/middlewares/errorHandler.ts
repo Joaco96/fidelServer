@@ -9,7 +9,7 @@ export interface ResponsetWithSenderMethod extends Response {
 export const errorHandler: ErrorRequestHandler  = (err, _req, res, _next) => {
   let statusCode = 500;
   let message = 'Error interno del servidor';
-  let errorDetails: any = err;
+  let errorDetails: any = err instanceof Error ? err.message : err;
 
   if (err instanceof ZodError) {
     statusCode = 400;

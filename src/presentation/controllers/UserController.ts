@@ -9,33 +9,19 @@ const loginUser = new LoginUser(userRepository);
 
 export class UserController {
   static async create(req: Request, res: Response) {
-    try {
-      const createdUser = await createUser.execute(req.body);
-      res
-        .status(201)
-        .sendResponse({ message: "Usuario creado con éxito", id: createdUser.id });
-    } catch (error) {
-      console.log((error as Error).message)
-      res
-        .status(500)
-        .sendResponse({ message: (error as Error).message });
-    }
+    const createdUser = await createUser.execute(req.body);
+    res
+      .status(201)
+      .sendResponse({ message: "Usuario creado con éxito", id: createdUser.id });
   }
 
   static async login(req: Request, res: Response) {
-    try {
-      const userToken = await loginUser.execute(
-        req.body.email,
-        req.body.password
-      );
-      res
-        .status(200)
-        .sendResponse({ message: "Ingreso exitoso", token: userToken });
-    } catch (error) {
-      console.log((error as Error).message)
-      res
-        .status(500)
-        .sendResponse({ message: (error as Error).message });
-    }
+    const userToken = await loginUser.execute(
+      req.body.email,
+      req.body.password
+    );
+    res
+      .status(200)
+      .sendResponse({ message: "Ingreso exitoso", token: userToken });
   }
 }

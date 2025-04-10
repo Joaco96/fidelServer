@@ -1,5 +1,5 @@
 import express from "express";
-import { sequelize, testDBConnection } from "./infrastructure/db/sequelize";
+import { sequelize } from "./infrastructure/db/sequelize";
 import serverConfig from "./config/server.config";
 import routesV1 from "./presentation/routes/V1/index";
 import { seedRoles } from "./infrastructure/seeders/seedRoles";
@@ -8,10 +8,12 @@ import { generateOpenApiDocs } from "./presentation/swagger/swagger";
 import { responseFormatter } from "./infrastructure/middlewares/responseFormatter";
 import { errorHandler } from "./infrastructure/middlewares/errorHandler";
 import "./types/index"
+import logger, { responseTimeHeader } from "./infrastructure/logger";
 
 const app = express();
+app.use(responseTimeHeader);
+app.use(logger);
 app.use(express.json());
-// @ts-ignore
 app.use(responseFormatter);
 app.use("/api/v1", routesV1);
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(generateOpenApiDocs()));
@@ -19,10 +21,8 @@ app.use(errorHandler);
 
 const PORT = serverConfig.port || 3000;
 const bootstrapServer = async () => {
-  await testDBConnection();
-
   await sequelize
-    .sync({ alter: true })
+    .sync({ alter: false })
     .then(async () => {
       await seedRoles();
     })

@@ -10,7 +10,7 @@ declare module 'express' {
 
 declare module 'express-serve-static-core' {
   export interface Response {
-    sendResponse?<T = any>(data: T): this;
+    sendResponse<T = any>(data: T): this;
     user?: CustomJwtPayload;
   }
 }

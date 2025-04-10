@@ -8,5 +8,5 @@ export interface ApiResponse<T = any> {
 
 export type ApiError =
   | string
-  | { message: string; [key: string]: any }
+  | { message: string; [key: string]: string | string[]  }
   | import("zod").ZodError;
