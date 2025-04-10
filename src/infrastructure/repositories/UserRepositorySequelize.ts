@@ -13,4 +13,11 @@ export class UserRepositorySequelize implements UserRepository {
       throw new Error("No se pudo guardar el usuario"); // Manejo de error
     }
   }
+  async findByEmail(email: string): Promise<User | null> {
+    const userModel = await UsersModel.findOne({ where: { email } });
+
+    if (!userModel) return null;
+
+    return UserMapper.toDomain(userModel);
+  }
 }
