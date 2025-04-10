@@ -2,7 +2,7 @@ import { RequestHandler, Request } from "express";
 import { CustomJwtPayload, verifyToken } from "../../domain/services/jwtService";
 
 // Extender la interfaz Request
-interface RequestWithUser extends Request {
+export interface RequestWithUser extends Request {
   user?: CustomJwtPayload;
 }
 
