@@ -6,6 +6,12 @@ import { CreateUserSchema, LoginUserSchema } from "../../application/schemas/Use
 export function generateOpenApiDocs() {
   const registry = new OpenAPIRegistry();
 
+  registry.registerComponent("securitySchemes", "Bearer Authentication", {
+    type: "http",
+    scheme: "bearer",
+    bearerFormat: "JWT",
+  });
+
   // Registrar rutas
   userRegistry.forEach(r => registry.registerPath(r));
   

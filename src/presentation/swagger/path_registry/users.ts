@@ -9,6 +9,7 @@ export const userRegistry: RouteConfig[] = [
     path: `/api/v1/users`,
     tags: USER_CONTROLLER_TAG,
     summary: "Crea un nuevo usuario",
+    // security: [{ bearerAuth: [] }], // Para que se vea el candado en swagger y poder autenticar
     request: {
       body: {
         content: {
