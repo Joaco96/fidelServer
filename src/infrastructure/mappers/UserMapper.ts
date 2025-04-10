@@ -5,7 +5,14 @@ export class UserMapper {
 
   static toDomain(userModel: UsersModel): User {
     const { id, role_id, name, email, password, points_balance } = userModel.get();
-    return new User(id, role_id, name, email, password, points_balance);
+    return {
+      id, 
+      role_id, 
+      name, 
+      email, 
+      password, 
+      points_balance
+    } as User;
   }
   
   static toPersistence(user: User): Partial<UsersModel> {

@@ -1,5 +1,6 @@
 import { RouteConfig } from "@asteasolutions/zod-to-openapi";
-import { LoginUserSchema, CreateUserSchema } from "../../../application/schemas/UserSchema";
+import { CreateUserSchema, LoginUserSchema, CreateUserResponseSchema, LoginUserResponseSchema } from "../../../infrastructure/validators/userValidators";
+import { errorApiSchema, makeApiResponseSchema } from "../schemas/apiResponseSchema";
 
 const USER_CONTROLLER_TAG = ["Users"];
 
@@ -22,6 +23,19 @@ export const userRegistry: RouteConfig[] = [
     responses: {
       201: {
         description: "Usuario creado exitosamente",
+        content: {
+          'application/json': {
+            schema: makeApiResponseSchema(CreateUserResponseSchema),
+          },
+        },
+      },
+      400: {
+        description: 'Error de validación',
+        content: {
+          'application/json': {
+            schema: errorApiSchema,
+          },
+        },
       },
     },
   },
@@ -42,6 +56,19 @@ export const userRegistry: RouteConfig[] = [
     responses: {
       200: {
         description: "Usuario logueado exitosamente",
+        content: {
+          'application/json': {
+            schema: makeApiResponseSchema(LoginUserResponseSchema),
+          },
+        },
+      },
+      400: {
+        description: 'Error de validación',
+        content: {
+          'application/json': {
+            schema: errorApiSchema,
+          },
+        },
       },
     },
   },

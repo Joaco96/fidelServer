@@ -1,6 +1,8 @@
 import { OpenAPIRegistry, OpenApiGeneratorV3 } from "@asteasolutions/zod-to-openapi";
 import { userRegistry } from "./path_registry/users";
-import { CreateUserSchema, LoginUserSchema } from "../../application/schemas/UserSchema";
+import { CreateUserSchema, LoginUserSchema } from "../../infrastructure/validators/userValidators";
+import { errorApiSchema, makeApiResponseSchema } from "./schemas/apiResponseSchema";
+import { z } from "zod";
 
 
 export function generateOpenApiDocs() {
@@ -16,6 +18,8 @@ export function generateOpenApiDocs() {
   userRegistry.forEach(r => registry.registerPath(r));
   
   // Registrar esquemas
+  registry.register("ApiSuccessResponse", makeApiResponseSchema(z.union([z.object({}), z.array(z.object({}))])));
+  registry.register("ApiErrorResponse", errorApiSchema);
   registry.register("CreateUser", CreateUserSchema);
   registry.register("LoginUser", LoginUserSchema);
 

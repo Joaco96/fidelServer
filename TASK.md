@@ -4,13 +4,13 @@
 
 ## **🔹 EPIC 1: Registro y Autenticación**  
 
-### 🟢 **HU-01: Registro de Usuario**  
+### 🟢 **HU-01: Registro de Usuario**  [X]
 **Como** visitante, **quiero** registrarme en la plataforma con mi correo o redes sociales, **para** poder acceder al programa de fidelización.  
 **Criterios de Aceptación:**  
 - El usuario puede registrarse con correo/contraseña o con Google/Facebook mediante Auth0.  
 - Se debe validar que el correo no esté duplicado.  
 
-### 🟢 **HU-02: Inicio de Sesión**  
+### 🟢 **HU-02: Inicio de Sesión**  [X]
 **Como** usuario registrado, **quiero** iniciar sesión en la aplicación, **para** acceder a mis puntos y beneficios.  
 **Criterios de Aceptación:**  
 - El usuario debe poder iniciar sesión con correo/contraseña o redes sociales.  

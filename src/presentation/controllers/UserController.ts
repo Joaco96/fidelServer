@@ -13,12 +13,12 @@ export class UserController {
       const createdUser = await createUser.execute(req.body);
       res
         .status(201)
-        .json({ message: "Usuario creado con éxito", id: createdUser.id });
+        .sendResponse({ message: "Usuario creado con éxito", id: createdUser.id });
     } catch (error) {
-      res.status(400).json({
-        error:
-          error instanceof Error ? error.message : "An unknown error occurred",
-      });
+      console.log((error as Error).message)
+      res
+        .status(500)
+        .sendResponse({ message: (error as Error).message });
     }
   }
 
@@ -28,12 +28,14 @@ export class UserController {
         req.body.email,
         req.body.password
       );
-      res.status(200).json({ message: "Ingreso exitoso", token: userToken });
+      res
+        .status(200)
+        .sendResponse({ message: "Ingreso exitoso", token: userToken });
     } catch (error) {
-      res.status(400).json({
-        error:
-          error instanceof Error ? error.message : "An unknown error occurred",
-      });
+      console.log((error as Error).message)
+      res
+        .status(500)
+        .sendResponse({ message: (error as Error).message });
     }
   }
 }

@@ -1,25 +1,20 @@
-import { UUID } from "crypto";
+import { randomUUID, UUID } from "crypto";
 import { RoleIds } from "./Role";
-import { UserSchema } from "../../application/schemas/UserSchema";
+
+const DEFAULT_POINTS_BALANCE = 0;
 
 export class User {
+  public readonly id: UUID;
+  public readonly role_id: RoleIds;
+  public readonly points_balance: number;
+
   constructor(
-    public id: UUID,
-    public role_id: RoleIds,
     public name: string,
     public email: string,
-    public password: string,
-    public points_balance: number,
+    public password: string
   ) {
-    const validatedData = UserSchema.omit({ password: true }).safeParse({id, role_id, name, email, password, points_balance});
-    if (!validatedData.success) {
-      throw new Error("Error de validación: " + validatedData.error.errors.map(e => e.message).join(", "));
-    }
-    this.id = validatedData.data.id as UUID;
-    this.role_id = validatedData.data.role_id;
-    this.name = validatedData.data.name;
-    this.email = validatedData.data.email;
-    this.password = this.password;
-    this.points_balance = validatedData.data.points_balance;
+    this.id = randomUUID();
+    this.role_id = RoleIds.USER;
+    this.points_balance = DEFAULT_POINTS_BALANCE;
   }
 }
