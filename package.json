@@ -10,7 +10,7 @@
     "start": "node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "JyS",
   "license": "ISC",
   "dependencies": {
     "@asteasolutions/zod-to-openapi": "^7.3.0",

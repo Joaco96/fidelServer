@@ -6,7 +6,7 @@ export interface ApiResponse<T = any> {
   statusCode: number;
 }
 
-export type ApiError =
-  | string
-  | { message: string; [key: string]: string | string[]  }
-  | import("zod").ZodError;
+export type ApiError = { 
+  message: string;
+  [key: string]: string | string[];
+};

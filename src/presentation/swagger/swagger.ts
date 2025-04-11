@@ -8,7 +8,7 @@ import { z } from "zod";
 export function generateOpenApiDocs() {
   const registry = new OpenAPIRegistry();
 
-  registry.registerComponent("securitySchemes", "Bearer Authentication", {
+  registry.registerComponent("securitySchemes", "bearerAuth", {
     type: "http",
     scheme: "bearer",
     bearerFormat: "JWT",

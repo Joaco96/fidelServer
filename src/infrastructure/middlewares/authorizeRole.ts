@@ -5,7 +5,7 @@ import { RequestWithUser } from "./authMiddleware";
 export function authorizeRole(requiredRole: RoleIds) {
   return (req: Request, res: Response, next: NextFunction) => {
     if ((req as RequestWithUser).user?.role_id !== requiredRole) {
-      return res.status(403).json({ error: "Acceso denegado" });
+      return res.status(403).sendResponse({ message: "Acceso denegado" });
     }
     next();
   };

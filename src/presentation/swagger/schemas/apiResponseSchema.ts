@@ -5,10 +5,12 @@ extendZodWithOpenApi(z);
 
 const errorSchema =
   z.union([
-    z.string(),
     z.object({
       message: z.string().optional(),
-    }).catchall(z.union([z.string(), z.array(z.string())]))
+    }).optional(),
+    z.object({
+      validationFieldError: z.array(z.string()).optional(),
+    }).optional()
   ])
 
 export const errorApiSchema =
@@ -24,7 +26,8 @@ export const errorApiSchema =
       message: "Error de validación",
       data: null,
       error: {
-        email: ["El email es obligatorio"],
+        message: "Mensaje de error desde el servidor",
+        validationFieldError: ["El email es inválido"],
       },
       statusCode: 400,
     }

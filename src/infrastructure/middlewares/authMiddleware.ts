@@ -9,7 +9,7 @@ export interface RequestWithUser extends Request {
 export const authMiddleware: RequestHandler = (req, res, next) => {
   const token = req.headers.authorization?.split(" ")[1];
   if (!token) {
-    res.status(401).json({ error: "Token no proporcionado" });
+    res.status(401).sendResponse({ message: "Token no proporcionado" });
     return;
   };
 
@@ -18,6 +18,6 @@ export const authMiddleware: RequestHandler = (req, res, next) => {
     (req as RequestWithUser).user = payload;
     next();
   } catch (err) {
-    res.status(401).json({ error: "Token inválido" });
+    res.status(401).sendResponse({ message: "Token inválido" });
   }
 }
