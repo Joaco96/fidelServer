@@ -20,18 +20,17 @@
 
 ## **🔹 EPIC 2: Gestión de Puntos y Compras**  
 
-### 🟢 **HU-03: Presentar Ticket de Compra**  
+### 🟢 **HU-03: Presentar Ticket de Compra**   [X] 
 **Como** usuario, **quiero** presentar mis tickets de compra en el centro comercial, **para** que se me acrediten los puntos correspondientes.  
 **Criterios de Aceptación:**  
 - El usuario debe presentar su ticket en el punto de información.  
 - El empleado del centro comercial registra la compra con el número de ticket y el monto.
 - Se calculan los puntos según el monto gastado.  
 
-### 🟢 **HU-04: Acreditación de Puntos**  
+### 🟢 **HU-04: Acreditación de Puntos**   [X]
 **Como** empleado del centro comercial, **quiero** registrar manualmente las compras de los clientes, **para** que acumulen puntos en la aplicación.  
 **Criterios de Aceptación:**  
 - Se registra la compra asociándola a un usuario.  
-- Se calculan los puntos según las reglas definidas por el centro comercial.  
 - Se almacena el historial de compras y puntos otorgados.  
 
 ### 🟢 **HU-05: Visualización de Historial de Puntos**  
