@@ -3,7 +3,7 @@ import { sequelize } from "../sequelize";
 import { UUID } from "crypto";
 
 export class TicketsModel extends Model {
-  declare id: UUID;
+  declare id: string;
   declare user_id: UUID;
   declare store_id: UUID;
   declare amount_spent: number;
@@ -13,8 +13,7 @@ export class TicketsModel extends Model {
 TicketsModel.init(
   {
     id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
+      type: DataTypes.STRING,
       primaryKey: true,
     },
     user_id: {

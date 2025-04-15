@@ -7,7 +7,7 @@
 ### 🟢 **HU-01: Registro de Usuario**  [X]
 **Como** visitante, **quiero** registrarme en la plataforma con mi correo o redes sociales, **para** poder acceder al programa de fidelización.  
 **Criterios de Aceptación:**  
-- El usuario puede registrarse con correo/contraseña o con Google/Facebook mediante Auth0.  
+- El usuario puede registrarse con correo/contraseña o con Google/Facebook mediante Auth0.
 - Se debe validar que el correo no esté duplicado.  
 
 ### 🟢 **HU-02: Inicio de Sesión**  [X]
@@ -24,7 +24,7 @@
 **Como** usuario, **quiero** presentar mis tickets de compra en el centro comercial, **para** que se me acrediten los puntos correspondientes.  
 **Criterios de Aceptación:**  
 - El usuario debe presentar su ticket en el punto de información.  
-- El empleado del centro comercial registra la compra con el número de ticket y el monto.  
+- El empleado del centro comercial registra la compra con el número de ticket y el monto.
 - Se calculan los puntos según el monto gastado.  
 
 ### 🟢 **HU-04: Acreditación de Puntos**  

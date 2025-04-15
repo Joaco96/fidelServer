@@ -1,4 +1,5 @@
 import { User } from "../../domain/entities/User";
+import { isMapperClass } from "../../domain/mapper";
 import { UsersModel } from "../db/models/UsersModel";
 
 export class UserMapper {
@@ -26,3 +27,5 @@ export class UserMapper {
     };
   }
 }
+
+isMapperClass<User, UsersModel>(UserMapper);

@@ -3,6 +3,8 @@ import { userRegistry } from "./path_registry/users";
 import { CreateUserSchema, LoginUserSchema } from "../../infrastructure/validators/userValidators";
 import { errorApiSchema, makeApiResponseSchema } from "./schemas/apiResponseSchema";
 import { z } from "zod";
+import { CreateTicketSchema } from "../../infrastructure/validators/ticketsValidators";
+import { ticketRegistry } from "./path_registry/tickets";
 
 
 export function generateOpenApiDocs() {
@@ -16,12 +18,14 @@ export function generateOpenApiDocs() {
 
   // Registrar rutas
   userRegistry.forEach(r => registry.registerPath(r));
+  ticketRegistry.forEach(r => registry.registerPath(r));
   
   // Registrar esquemas
   registry.register("ApiSuccessResponse", makeApiResponseSchema(z.union([z.object({}), z.array(z.object({}))])));
   registry.register("ApiErrorResponse", errorApiSchema);
   registry.register("CreateUser", CreateUserSchema);
   registry.register("LoginUser", LoginUserSchema);
+  registry.register("CreateTicket", CreateTicketSchema)
 
   // Definir la documentación OpenAPI
   const generator = new OpenApiGeneratorV3(registry.definitions);

@@ -9,6 +9,7 @@ import { responseFormatter } from "./infrastructure/middlewares/responseFormatte
 import { errorHandler } from "./infrastructure/middlewares/errorHandler";
 import "./types/index"
 import logger, { responseTimeHeader } from "./infrastructure/logger";
+import { seedStores } from "./infrastructure/seeders/seedStores";
 
 const app = express();
 app.use(responseTimeHeader);
@@ -22,9 +23,10 @@ app.use(errorHandler);
 const PORT = serverConfig.port || 3000;
 const bootstrapServer = async () => {
   await sequelize
-    .sync({ alter: false })
+    .sync({ alter: true })
     .then(async () => {
       await seedRoles();
+      await seedStores();
     })
     .catch((err: any) =>
       console.log(`❌ Error conectando a PostgreSQL: ${err}`)
