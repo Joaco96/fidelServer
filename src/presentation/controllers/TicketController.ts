@@ -10,7 +10,7 @@ const ticketRepository = new TicketRepositorySequelize();
 const userRepository = new UserRepositorySequelize();
 const pointRepository = new PointRepositorySequelize();
 const unitOfWork = new SequelizeUnitOfWork(sequelize);
-const createTicket = new CreateTicket(ticketRepository,userRepository,pointRepository, unitOfWork);
+const createTicket = new CreateTicket(ticketRepository, userRepository, pointRepository, unitOfWork);
 
 export class TicketController {
   static async create(req: Request, res: Response) {

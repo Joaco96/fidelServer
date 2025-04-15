@@ -2,10 +2,13 @@ import { Request, Response } from "express";
 import { CreateUser } from "../../application/use-cases/Users/CreateUser";
 import { UserRepositorySequelize } from "../../infrastructure/repositories/UserRepositorySequelize";
 import { LoginUser } from "../../application/use-cases/Users/LoginUser";
+import { SequelizeUnitOfWork } from "../../infrastructure/transactions/SequelizeUnitOfWork";
+import { sequelize } from "../../infrastructure/db/sequelize";
 
 const userRepository = new UserRepositorySequelize();
-const createUser = new CreateUser(userRepository);
-const loginUser = new LoginUser(userRepository);
+const unitOfWork = new SequelizeUnitOfWork(sequelize);
+const createUser = new CreateUser(userRepository, unitOfWork);
+const loginUser = new LoginUser(userRepository, unitOfWork);
 
 export class UserController {
   static async create(req: Request, res: Response) {

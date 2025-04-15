@@ -28,8 +28,13 @@ PointsModel.init(
 );
 
 PointsModel.afterCreate(async (point, options) => {
-  await sequelize.models.Users.increment(
-    { points_balance: point.amount },
-    { where: { id: point.user_id }, transaction: options.transaction }
-  );
+  try {
+    await sequelize.models.Users.increment(
+      { points_balance: point.amount },
+      { where: { id: point.user_id }, transaction: options.transaction }
+    );
+  } catch (error) {
+    console.error("Error incrementando Balance de puntos", error);
+    throw new Error("Error incrementando Balance de puntos"); // ¡esto hace rollback de la transaction!
+  }
 });

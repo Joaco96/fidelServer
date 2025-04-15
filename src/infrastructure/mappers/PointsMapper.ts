@@ -4,12 +4,12 @@ import { PointsModel } from "../db/models/PointsModel";
 
 export class PointsMapper{
   static toDomain(pointsModel: PointsModel): Points {
-    const { id, user_id, amount, } =
-    pointsModel.get();
+    const { id, user_id, amount, } = pointsModel.get();
+    
     return {
-    id,
-    user_id,
-    amount,
+      id,
+      user_id,
+      amount,
     } as Points;
   }
 

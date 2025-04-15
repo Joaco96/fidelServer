@@ -28,8 +28,13 @@ StocksModel.init(
 );
 
 StocksModel.afterCreate(async (stock, options) => {
-  await sequelize.models.Rewards.increment(
-    { stock_balance: stock.quantity },
-    { where: { id: stock.reward_id }, transaction: options.transaction }
-  );
+  try {
+    await sequelize.models.Rewards.increment(
+      { stock_balance: stock.quantity },
+      { where: { id: stock.reward_id }, transaction: options.transaction }
+    );
+  } catch (error) {
+    console.error("Error incrementando Balance de stock", error);
+    throw new Error("Error incrementando Balance de stock"); // ¡esto hace rollback de la transaction!
+  }
 });
