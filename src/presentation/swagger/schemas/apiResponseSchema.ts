@@ -34,25 +34,11 @@ export const errorApiSchema =
   });
 
 export const makeApiResponseSchema = <T extends z.ZodTypeAny>(dataSchema: T) => {
-  const schema = z.object({
+  return z.object({
     success: z.boolean(),
     message: z.string(),
     data: dataSchema,
-    error: z.null(),
+    error: z.string().openapi({example: "null"}),
     statusCode: z.number(),
-  });
-
-  // @ts-ignore
-  return schema.openapi({
-    example: {
-      success: true,
-      message: "Solicitud exitosa",
-      data: {
-        message: "Operación realizada correctamente",
-        token: "2f34335g353.f343f433f34f3f34f.f3434f34f4thrjjtyj5",
-      } as any,
-      error: null,
-      statusCode: 200,
-    }
   });
 };

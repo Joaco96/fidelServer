@@ -13,10 +13,10 @@ export const UserSchema = z.object({
 });
 
 export const CreateUserSchema = UserSchema.omit({ id: true, role_id: true, points_balance: true });
-export const CreateUserResponseSchema = z.object({ id: UserSchema.shape.id, message: z.string() });
+export const CreateUserResponseSchema = z.object({ message: z.string(), id: UserSchema.shape.id });
 
 export const LoginUserSchema = UserSchema.omit({ id: true, role_id: true, points_balance: true, name: true });
-export const LoginUserResponseSchema = z.object({ token: z.string(), message: z.string() });
+export const LoginUserResponseSchema = z.object({ message: z.string(), token: z.string() });
 
 export const GetUserSchema = UserSchema.omit({ password: true });
 export const GetUsersListSchema = z.array(GetUserSchema);
