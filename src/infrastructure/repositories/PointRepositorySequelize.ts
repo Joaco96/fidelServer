@@ -17,4 +17,18 @@ export class PointRepositorySequelize implements PointRepository {
       throw new Error("No se pudo guardar la transaccion");
     }
   }
+
+  async findByUserId(userId: string, transaction?: Transaction): Promise<Array<Points>> {
+    try {
+      const pointsHistory = await PointsModel.findAll({ 
+        where: { user_id: userId },
+        transaction 
+      });
+      console.log(pointsHistory)
+      return pointsHistory.map(ph => PointsMapper.toDomain(ph));
+    } catch (error) {
+      console.error("Error al obtener la lista de movimientos de puntos:", error);
+      throw new Error("No se pudo obtener la lista de movimientos de puntos");
+    }
+  }
 }

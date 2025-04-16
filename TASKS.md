@@ -33,10 +33,10 @@
 - Se registra la compra asociándola a un usuario.  
 - Se almacena el historial de compras y puntos otorgados.  
 
-### 🟢 **HU-05: Visualización de Historial de Puntos**  
+### 🟢 **HU-05: Visualización de Historial de Puntos**   [X]
 **Como** usuario, **quiero** ver el historial de mis transacciones de puntos, **para** entender cómo los gané o gasté.  
 **Criterios de Aceptación:**  
-- Se muestra una lista con las compras que generaron puntos.  
+- Se muestra una lista con los movimientos de puntos por usuario.  
 - Se muestran los canjes de puntos realizados.  
 - Se indica la fecha y el motivo de cada movimiento.  
 

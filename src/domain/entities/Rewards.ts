@@ -7,5 +7,7 @@ export class Rewards {
     public description: string,
     public points_cost: number,
     public stock_balance: number,
+    public created_at?: Date,
+    public updated_at?: Date
   ) {}
 }

@@ -6,5 +6,7 @@ export class Redemptions {
     public user_id: UUID,
     public reward_id: UUID,
     public points_used: number,
+    public created_at?: Date,
+    public updated_at?: Date
   ) {}
 }

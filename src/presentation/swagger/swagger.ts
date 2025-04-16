@@ -5,6 +5,7 @@ import { errorApiSchema, makeApiResponseSchema } from "./schemas/apiResponseSche
 import { z } from "zod";
 import { CreateTicketSchema } from "../../infrastructure/validators/ticketsValidators";
 import { ticketRegistry } from "./path_registry/tickets";
+import { pointRegistry } from "./path_registry/points";
 
 
 export function generateOpenApiDocs() {
@@ -19,6 +20,7 @@ export function generateOpenApiDocs() {
   // Registrar rutas
   userRegistry.forEach(r => registry.registerPath(r));
   ticketRegistry.forEach(r => registry.registerPath(r));
+  pointRegistry.forEach(r => registry.registerPath(r));
   
   // Registrar esquemas
   registry.register("ApiSuccessResponse", makeApiResponseSchema(z.union([z.object({}), z.array(z.object({}))])));
