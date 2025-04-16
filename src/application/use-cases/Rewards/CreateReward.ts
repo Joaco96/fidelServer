@@ -10,12 +10,12 @@ export class CreateReward<T> {
 
   async execute(reward: Rewards): Promise<Rewards> {
     return await this.uow.runInTransaction(async (transaction) => {
-      const foundReward= await this.userRepository.findBy(
+      const foundReward = await this.userRepository.findBy(
         "name",
         reward.name,
         transaction
       );
-      if (foundReward) throw new Error("El nombre del beneficio ya existe");
+      if (foundReward.length) throw new Error("El nombre del beneficio ya existe");
 
       const newReward = new Rewards(
         reward.name,

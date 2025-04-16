@@ -8,7 +8,8 @@ export class TicketRepositorySequelize implements TicketRepository {
   async save(ticket: Tickets, transaction?: Transaction): Promise<Tickets> {
     try {
       const createdUser = await TicketsModel.create(
-        TicketMapper.toPersistence(ticket), { transaction }
+        TicketMapper.toPersistence(ticket),
+        { transaction }
       );
 
       return TicketMapper.toDomain(createdUser);
@@ -22,9 +23,7 @@ export class TicketRepositorySequelize implements TicketRepository {
     try {
       const ticketModel = await TicketsModel.findOne({ where: { id } });
 
-      if (!ticketModel) return null;
-
-      return TicketMapper.toDomain(ticketModel);
+      return ticketModel ? TicketMapper.toDomain(ticketModel) : null;
     } catch (error) {
       console.error("Ocurrio un error:", error);
       throw new Error("No se pudo encontrar al ticket");

@@ -15,7 +15,7 @@ export class GetPointsHistory<T> {
       const foundUser = await this.userRepository.findById(userId, transaction);
       if(!foundUser) throw new Error("Usuario no existe");
       
-      return await this.pointRepository.findByUserId(userId, transaction);
+      return await this.pointRepository.findAllByUserId(userId, transaction);
     });
   }
 }

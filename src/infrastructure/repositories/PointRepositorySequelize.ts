@@ -18,12 +18,13 @@ export class PointRepositorySequelize implements PointRepository {
     }
   }
 
-  async findByUserId(userId: string, transaction?: Transaction): Promise<Array<Points>> {
+  async findAllByUserId(userId: string, transaction?: Transaction): Promise<Array<Points>> {
     try {
       const pointsHistory = await PointsModel.findAll({ 
         where: { user_id: userId },
         transaction 
       });
+
       return pointsHistory.map(ph => PointsMapper.toDomain(ph));
     } catch (error) {
       console.error("Error al obtener la lista de movimientos de puntos:", error);

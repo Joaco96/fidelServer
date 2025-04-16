@@ -23,14 +23,14 @@ export class RewardRepositorySequelize implements RewardRepository {
     key: string,
     value: T,
     transaction?: Transaction
-  ): Promise<Rewards | null> {
+  ): Promise<Array<Rewards>> {
     try {
-      const foundRewardByKey = await RewardsModel.findOne({
+      const foundRewardByKey = await RewardsModel.findAll({
         where: { [key]: value },
         transaction,
       });
 
-      return foundRewardByKey ? RewardMapper.toDomain(foundRewardByKey) : null;
+      return foundRewardByKey.map(fr => RewardMapper.toDomain(fr));
     } catch (error) {
       console.error("Error al buscar el beneficio:", error);
       throw new Error("No se pudo encontrar el beneficio");
