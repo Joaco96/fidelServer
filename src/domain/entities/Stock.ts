@@ -1,11 +1,14 @@
-import { UUID } from "crypto";
+import { randomUUID, UUID } from "crypto";
 
 export class Stock {
+  public readonly id: UUID;
+
   constructor(
-    public id: UUID,
     public reward_id: UUID,
     public quantity: number,
-    public created_at?: Date,
-    public updated_at?: Date
-  ) {}
+    public createdAt?: Date,
+    public updatedAt?: Date
+  ) {
+    this.id = randomUUID();
+  }
 }

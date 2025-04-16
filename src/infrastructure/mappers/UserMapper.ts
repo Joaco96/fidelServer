@@ -3,19 +3,29 @@ import { isMapperClass } from "../../domain/mapper";
 import { UsersModel } from "../db/models/UsersModel";
 
 export class UserMapper {
-
   static toDomain(userModel: UsersModel): User {
-    const { id, role_id, name, email, password, points_balance } = userModel.get();
+    const {
+      id,
+      role_id,
+      name,
+      email,
+      password,
+      points_balance,
+      createdAt,
+      updatedAt,
+    } = userModel.get() as UsersModel;
     return {
-      id, 
-      role_id, 
-      name, 
-      email, 
-      password, 
-      points_balance
+      id,
+      role_id,
+      name,
+      email,
+      password,
+      points_balance,
+      createdAt,
+      updatedAt,
     } as User;
   }
-  
+
   static toPersistence(user: User): Partial<UsersModel> {
     return {
       id: user.id,

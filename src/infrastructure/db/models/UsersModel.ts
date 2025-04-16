@@ -10,6 +10,8 @@ export class UsersModel extends Model {
   declare email: string;
   declare password: string;
   declare points_balance: number;
+  declare createdAt: Date;
+  declare updatedAt: Date;
 }
 
 UsersModel.init(
@@ -35,7 +37,7 @@ UsersModel.init(
     password: {
       type: DataTypes.STRING,
       allowNull: false,
-    },    
+    },
     points_balance: {
       type: DataTypes.INTEGER,
       defaultValue: 0,
@@ -43,4 +45,3 @@ UsersModel.init(
   },
   { sequelize, modelName: "Users" }
 );
-

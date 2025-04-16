@@ -4,14 +4,23 @@ import { TicketsModel } from "../db/models/TicketsModel";
 
 export class TicketMapper {
   static toDomain(ticketsModel: TicketsModel): Tickets {
-    const { id, user_id, store_id, amount_spent, points_earned } =
-      ticketsModel.get();
+    const {
+      id,
+      user_id,
+      store_id,
+      amount_spent,
+      points_earned,
+      createdAt,
+      updatedAt,
+    } = ticketsModel.get() as TicketsModel;
     return {
       id,
       user_id,
       store_id,
       amount_spent,
       points_earned,
+      createdAt,
+      updatedAt,
     } as Tickets;
   }
 

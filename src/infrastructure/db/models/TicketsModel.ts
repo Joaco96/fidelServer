@@ -8,6 +8,8 @@ export class TicketsModel extends Model {
   declare store_id: UUID;
   declare amount_spent: number;
   declare points_earned: number;
+  declare createdAt: Date;
+  declare updatedAt: Date;
 }
 
 TicketsModel.init(

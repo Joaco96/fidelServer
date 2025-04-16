@@ -8,8 +8,8 @@ export class Tickets {
     public user_id: UUID,
     public store_id: UUID,
     public amount_spent: number,
-    public created_at?: Date,
-    public updated_at?: Date
+    public createdAt?: Date,
+    public updatedAt?: Date
   ) {
     this.points_earned = this.calculatePoints(amount_spent);
   }

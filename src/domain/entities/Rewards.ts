@@ -1,13 +1,16 @@
-import { UUID } from "crypto";
+import { randomUUID, UUID } from "crypto";
 
 export class Rewards {
+  public readonly id: UUID;
+
   constructor(
-    public id: UUID,
     public name: string,
     public description: string,
     public points_cost: number,
     public stock_balance: number,
-    public created_at?: Date,
-    public updated_at?: Date
-  ) {}
+    public createdAt?: Date,
+    public updatedAt?: Date
+  ) {
+    this.id = randomUUID();
+  }
 }

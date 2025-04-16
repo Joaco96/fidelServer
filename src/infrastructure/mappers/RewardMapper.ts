@@ -2,16 +2,26 @@ import { Rewards } from "../../domain/entities/Rewards";
 import { isMapperClass } from "../../domain/mapper";
 import { RewardsModel } from "../db/models/RewardsModel";
 
-export class RewardMapper{
-  static toDomain(pointsModel: RewardsModel): Rewards{
-    const { id, name, description, points_cost, stock_balance } = pointsModel.get();
-    
+export class RewardMapper {
+  static toDomain(rewardsModel: RewardsModel): Rewards {
+    const {
+      id,
+      name,
+      description,
+      points_cost,
+      stock_balance,
+      createdAt,
+      updatedAt,
+    } = rewardsModel.get() as RewardsModel;
+
     return {
-    id,
-    name,
-    description,
-    points_cost,
-    stock_balance
+      id,
+      name,
+      description,
+      points_cost,
+      stock_balance,
+      createdAt,
+      updatedAt,
     } as Rewards;
   }
 

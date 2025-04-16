@@ -2,6 +2,7 @@ import { Router } from "express";
 import userRoutes from "./userRoutes";
 import ticketRoutes from "./ticketRoutes";
 import pointRoutes from "./pointRoutes";
+import rewardRoutes from "./rewardRoutes";
 
 const router = Router();
 
@@ -9,5 +10,6 @@ const router = Router();
 router.use("/users", userRoutes);
 router.use("/tickets", ticketRoutes);
 router.use("/points", pointRoutes);
+router.use("/rewards", rewardRoutes);
 
 export default router;

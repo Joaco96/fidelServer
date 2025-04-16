@@ -12,8 +12,8 @@ export class User {
     public name: string,
     public email: string,
     public password: string,
-    public created_at?: Date,
-    public updated_at?: Date
+    public createdAt?: Date,
+    public updatedAt?: Date
   ) {
     this.id = randomUUID();
     this.role_id = RoleIds.USER;

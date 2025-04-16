@@ -1,4 +1,3 @@
-import { randomUUID } from "crypto";
 import { Points } from "../../../domain/entities/Points";
 import { Tickets } from "../../../domain/entities/Tickets";
 import { TicketRepository } from "../../../domain/repositories/ticketRepository";
@@ -31,11 +30,7 @@ export class CreateTicket<T> {
         ticket.amount_spent
       );
 
-      const newPoints = new Points(
-        randomUUID(),
-        newTicket.user_id,
-        newTicket.points_earned
-      );
+      const newPoints = new Points(newTicket.user_id, newTicket.points_earned);
 
       await this.pointRepository.save(newPoints, transaction);
       return await this.ticketRepository.save(newTicket, transaction);

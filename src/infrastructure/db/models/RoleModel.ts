@@ -5,6 +5,8 @@ import { UUID } from "crypto";
 export class RoleModel extends Model {
   declare id: UUID;
   declare name: string;
+  declare createdAt: Date;
+  declare updatedAt: Date;
 }
 
 RoleModel.init(

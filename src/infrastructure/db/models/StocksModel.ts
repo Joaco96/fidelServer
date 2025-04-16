@@ -6,6 +6,8 @@ export class StocksModel extends Model {
   declare id: UUID;
   declare reward_id: UUID;
   declare quantity: number;
+  declare createdAt: Date;
+  declare updatedAt: Date;
 }
 
 StocksModel.init(

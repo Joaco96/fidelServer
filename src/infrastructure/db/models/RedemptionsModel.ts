@@ -7,6 +7,8 @@ export class RedemptionsModel extends Model {
   declare user_id: UUID;
   declare reward_id: UUID;
   declare points_used: number;
+  declare createdAt: Date;
+  declare updatedAt: Date;
 }
 
 RedemptionsModel.init(

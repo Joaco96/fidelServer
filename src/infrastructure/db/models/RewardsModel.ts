@@ -8,6 +8,8 @@ export class RewardsModel extends Model {
   declare description: string;
   declare points_cost: number;
   declare stock_balance: number;
+  declare createdAt: Date;
+  declare updatedAt: Date;
 }
 
 RewardsModel.init(

@@ -7,6 +7,8 @@ export class StoresModel extends Model {
   declare name: string;
   declare location: string;
   declare contact: string;
+  declare createdAt: Date;
+  declare updatedAt: Date;
 }
 
 StoresModel.init(

@@ -1,12 +1,15 @@
-import { UUID } from "crypto";
+import { randomUUID, UUID } from "crypto";
 
 export class Stores {
+  public readonly id: UUID;
+
   constructor(
-    public id: UUID,
     public name: string,
     public location: string,
     public contact: string,
-    public created_at?: Date,
-    public updated_at?: Date
-  ) {}
+    public createdAt?: Date,
+    public updatedAt?: Date
+  ) {
+    this.id = randomUUID();
+  }
 }

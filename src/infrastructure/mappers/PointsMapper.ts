@@ -2,16 +2,16 @@ import { Points } from "../../domain/entities/Points";
 import { isMapperClass } from "../../domain/mapper";
 import { PointsModel } from "../db/models/PointsModel";
 
-export class PointsMapper{
+export class PointsMapper {
   static toDomain(pointsModel: PointsModel): Points {
-    const { id, user_id, amount, createdAt, updatedAt } = pointsModel.get();
-    
+    const { id, user_id, amount, createdAt, updatedAt } = pointsModel.get() as PointsModel;
+
     return {
       id,
       user_id,
       amount,
-      created_at: createdAt,
-      updated_at: updatedAt
+      createdAt,
+      updatedAt,
     } as Points;
   }
 

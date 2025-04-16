@@ -6,6 +6,8 @@ export class PointsModel extends Model {
   declare id: UUID;
   declare user_id: UUID;
   declare amount: number;
+  declare createdAt: Date;
+  declare updatedAt: Date;
 }
 
 PointsModel.init(
@@ -22,7 +24,7 @@ PointsModel.init(
     amount: {
       type: DataTypes.INTEGER,
       allowNull: false,
-    },
+    },    
   },
   { sequelize, modelName: "Points" }
 );
