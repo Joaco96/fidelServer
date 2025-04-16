@@ -3,10 +3,8 @@
 Este documento describe la estructura del proyecto y las tecnologías utilizadas.
 
 ## 🛠️ Tecnologías Utilizadas
-- **Frontend:** React
-- **Backend:** Node.js con Express
+- **Backend:** Node.js con Express, Typescript
 - **Base de Datos:** PostgreSQL
-- **Autenticación:** Auth0
 
 ---
 
