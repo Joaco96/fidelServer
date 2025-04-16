@@ -13,3 +13,6 @@ export const RewardSchema = z.object({
 
 export const CreateRewardSchema = RewardSchema.omit({ id: true });
 export const CreateRewardResponseSchema = z.object({ message: z.string(), id: RewardSchema.shape.id });
+
+export const UpdateRewardSchema = RewardSchema.omit({ id: true, stock_balance: true });
+export const UpdateRewardParamsSchema = RewardSchema.pick({ id: true });

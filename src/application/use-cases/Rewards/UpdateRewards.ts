@@ -2,29 +2,21 @@ import { Rewards } from "../../../domain/entities/Rewards";
 import { RewardRepository } from "../../../domain/repositories/rewardRepository";
 import { UnitOfWork } from "../../../domain/transaction";
 
-export class CreateReward<T> {
+export class UpdateReward<T> {
   constructor(
     private rewardRepository: RewardRepository,
     private uow: UnitOfWork<T>
   ) {}
 
-  async execute(reward: Rewards): Promise<Rewards> {
+  async execute(id: string, data: Partial<Rewards>): Promise<Rewards> {
     return await this.uow.runInTransaction(async (transaction) => {
       const foundReward = await this.rewardRepository.findBy(
-        "name",
-        reward.name,
+        "id",
+        id,
         transaction
       );
-      if (foundReward.length) throw new Error("El nombre del beneficio ya existe");
-
-      const newReward = new Rewards(
-        reward.name,
-        reward.description,
-        reward.points_cost,
-        reward.stock_balance
-      );
-
-      return await this.rewardRepository.save(newReward, transaction);
+      if (!foundReward.length) throw new Error("Beneficio inexistente");
+      return await this.rewardRepository.update(id, data, transaction);
     });
   }
 }

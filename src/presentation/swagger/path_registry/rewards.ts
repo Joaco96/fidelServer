@@ -1,6 +1,15 @@
 import { RouteConfig } from "@asteasolutions/zod-to-openapi";
-import { errorApiSchema, makeApiResponseSchema } from "../schemas/apiResponseSchema";
-import { CreateRewardResponseSchema, CreateRewardSchema } from "../../../infrastructure/validators/rewardsValidators";
+import {
+  errorApiSchema,
+  makeApiResponseSchema,
+} from "../schemas/apiResponseSchema";
+import {
+  CreateRewardResponseSchema,
+  CreateRewardSchema,
+  RewardSchema,
+  UpdateRewardParamsSchema,
+  UpdateRewardSchema,
+} from "../../../infrastructure/validators/rewardsValidators";
 
 const REWARD_CONTROLLER_TAG = ["Rewards"];
 
@@ -24,15 +33,50 @@ export const rewardsRegistry: RouteConfig[] = [
       201: {
         description: "Beneficio creado exitosamente",
         content: {
-          'application/json': {
+          "application/json": {
             schema: makeApiResponseSchema(CreateRewardResponseSchema),
           },
         },
       },
       400: {
-        description: 'Error de validación',
+        description: "Error de validación",
         content: {
-          'application/json': {
+          "application/json": {
+            schema: errorApiSchema,
+          },
+        },
+      },
+    },
+  },
+  {
+    method: "patch",
+    path: `/api/v1/rewards/{id}`,
+    tags: REWARD_CONTROLLER_TAG,
+    summary: "Actualiza un Beneficio",
+    security: [{ bearerAuth: [] }],
+    request: {
+      body: {
+        content: {
+          "application/json": {
+            schema: UpdateRewardSchema,
+          },
+        },
+      },
+      params: UpdateRewardParamsSchema,
+    },
+    responses: {
+      200: {
+        description: "Beneficio actualizado exitosamente",
+        content: {
+          "application/json": {
+            schema: makeApiResponseSchema(RewardSchema),
+          },
+        },
+      },
+      400: {
+        description: "Error de validación",
+        content: {
+          "application/json": {
             schema: errorApiSchema,
           },
         },

@@ -50,11 +50,11 @@
 - Se puede definir nombre, descripción, imagen y puntos requeridos.
 - Se debe asignar una cantidad de stock disponible.
 
-### 📌 **HU-07: Modificar o Eliminar Recompensas**  
+### 📌 **HU-07: Modificar Recompensas**  
 **Como** administrador, **quiero** modificar o eliminar recompensas, **para** mantener actualizado el catálogo. 
 **Criterios de Aceptación:**  
 - Solo los administradores pueden realizar cambios.
-- No se pueden eliminar recompensas que ya hayan sido canjeadas.
+- Se puede modificar cualquier campo menos el stock.
 
 ### 📌 **HU-08: Gestión de Stock de Recompensas**  
 **Como** administrador, **quiero** actualizar el stock de recompensas, **para** evitar que los clientes intenten canjear beneficios agotados.
@@ -111,10 +111,10 @@
 - Se pueden asignar roles de usuario normal, empleado y administrador.
 - Los empleados solo pueden validar compras y canjes.
 
-### 📌 **HU-15: Seguridad en la Plataforma**  
+### 📌 **HU-15: Seguridad en la Plataforma**   [X]
 **Como** usuario, **quiero** cque mi información esté protegida, **para** evitar accesos no autorizados.
 **Criterios de Aceptación:**  
-- Se implementa autenticación con Auth0.
+- Se implementa autenticación.
 - Se requiere HTTPS para todas las conexiones.
 
 ---  

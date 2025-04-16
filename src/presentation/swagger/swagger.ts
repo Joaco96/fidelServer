@@ -7,7 +7,7 @@ import { CreateTicketSchema } from "../../infrastructure/validators/ticketsValid
 import { ticketRegistry } from "./path_registry/tickets";
 import { pointRegistry } from "./path_registry/points";
 import { rewardsRegistry } from "./path_registry/rewards";
-import { CreateRewardSchema } from "../../infrastructure/validators/rewardsValidators";
+import { CreateRewardSchema, UpdateRewardSchema } from "../../infrastructure/validators/rewardsValidators";
 
 
 export function generateOpenApiDocs() {
@@ -32,6 +32,7 @@ export function generateOpenApiDocs() {
   registry.register("LoginUser", LoginUserSchema);
   registry.register("CreateTicket", CreateTicketSchema);
   registry.register("CreateReward", CreateRewardSchema);
+  registry.register("UpdateReward", UpdateRewardSchema);
 
   // Definir la documentación OpenAPI
   const generator = new OpenApiGeneratorV3(registry.definitions);

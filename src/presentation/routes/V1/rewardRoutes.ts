@@ -3,10 +3,11 @@ import { validateSchema } from "../../../infrastructure/middlewares/validateSche
 import { asyncHandler } from "../../../utils/asyncHandler";
 import { authMiddleware } from "../../../infrastructure/middlewares/authMiddleware";
 import { RewardController } from "../../controllers/RewardController";
-import { CreateRewardSchema } from "../../../infrastructure/validators/rewardsValidators";
+import { CreateRewardSchema, UpdateRewardParamsSchema, UpdateRewardSchema } from "../../../infrastructure/validators/rewardsValidators";
 
 const router = Router();
 
 router.post("/", authMiddleware, validateSchema(CreateRewardSchema), asyncHandler(RewardController.create));
+router.patch("/:id", authMiddleware, validateSchema(UpdateRewardParamsSchema, "params"), validateSchema(UpdateRewardSchema), asyncHandler(RewardController.update));
 
 export default router;
