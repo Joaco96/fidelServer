@@ -24,7 +24,6 @@ export class PointRepositorySequelize implements PointRepository {
         where: { user_id: userId },
         transaction 
       });
-      console.log(pointsHistory)
       return pointsHistory.map(ph => PointsMapper.toDomain(ph));
     } catch (error) {
       console.error("Error al obtener la lista de movimientos de puntos:", error);

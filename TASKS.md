@@ -42,44 +42,21 @@
 
 ---  
 
-## **🔹 EPIC 3: Canje de Recompensas**  
+## **🔹 EPIC 3: Gestión de Recompensas y Stock**  
 
-### 🟢 **HU-06: Explorar Beneficios Disponibles**  
-**Como** usuario, **quiero** ver el catálogo de beneficios y experiencias disponibles, **para** decidir en qué gastar mis puntos.  
-**Criterios de Aceptación:**  
-- Se muestra una lista de recompensas con su imagen, descripción y costo en puntos.  
-- Se indica la disponibilidad de stock de cada recompensa.  
-
-### 🟢 **HU-07: Canjear Puntos por Beneficios**  
-**Como** usuario, **quiero** canjear mis puntos por un beneficio, **para** disfrutar las recompensas del programa de fidelización.  
-**Criterios de Aceptación:**  
-- Se valida que el usuario tenga suficientes puntos.  
-- Se descuenta el saldo de puntos correspondiente.  
-- Se genera un comprobante de canje.  
-
-### 🟢 **HU-08: Confirmar Canje en el Centro Comercial**  
-**Como** usuario, **quiero** presentar mi comprobante de canje en el punto de información, **para** recibir mi beneficio.  
-**Criterios de Aceptación:**  
-- El empleado verifica el código del comprobante en el sistema.  
-- Se marca el beneficio como "entregado".  
-
----  
-
-## **🔹 EPIC 4: Gestión de Recompensas y Stock**  
-
-### 🟢 **HU-09: Cargar Nueva Recompensa**  
+### 🟢 **HU-06: Cargar Nueva Recompensa**  
 **Como** administrador, **quiero** agregar nuevas recompensas al sistema, **para** ofrecer más opciones a los clientes.
 **Criterios de Aceptación:**  
 - Se puede definir nombre, descripción, imagen y puntos requeridos.
 - Se debe asignar una cantidad de stock disponible.
 
-### 🟢 **HU-10: Modificar o Eliminar Recompensas**  
+### 🟢 **HU-07: Modificar o Eliminar Recompensas**  
 **Como** administrador, **quiero** modificar o eliminar recompensas, **para** mantener actualizado el catálogo. 
 **Criterios de Aceptación:**  
 - Solo los administradores pueden realizar cambios.
 - No se pueden eliminar recompensas que ya hayan sido canjeadas.
 
-### 🟢 **HU-11: Gestión de Stock de Recompensas**  
+### 🟢 **HU-08: Gestión de Stock de Recompensas**  
 **Como** administrador, **quiero** actualizar el stock de recompensas, **para** evitar que los clientes intenten canjear beneficios agotados.
 **Criterios de Aceptación:**  
 - Se puede aumentar o reducir el stock manualmente.
@@ -87,7 +64,30 @@
 
 ---  
 
-## **🔹 EPIC 5: Gestión de Recompensas y Stock**  
+## **🔹 EPIC 4: Canje de Recompensas**  
+
+### 🟢 **HU-09: Explorar Recompensas Disponibles**  
+**Como** usuario, **quiero** ver el catálogo de beneficios y experiencias disponibles, **para** decidir en qué gastar mis puntos.  
+**Criterios de Aceptación:**  
+- Se muestra una lista de recompensas con su imagen, descripción y costo en puntos.  
+- Se indica la disponibilidad de stock de cada recompensa.  
+
+### 🟢 **HU-10: Canjear Puntos por Recompensas**  
+**Como** usuario, **quiero** canjear mis puntos por un beneficio, **para** disfrutar las recompensas del programa de fidelización.  
+**Criterios de Aceptación:**  
+- Se valida que el usuario tenga suficientes puntos.  
+- Se descuenta el saldo de puntos correspondiente.  
+- Se genera un comprobante de canje.  
+
+### 🟢 **HU-11: Confirmar Canje en el Centro Comercial**  
+**Como** usuario, **quiero** presentar mi comprobante de canje en el punto de información, **para** recibir mi beneficio.  
+**Criterios de Aceptación:**  
+- El empleado verifica el código del comprobante en el sistema.  
+- Se marca el beneficio como "entregado".  
+
+---  
+
+## **🔹 EPIC 5: Reportes y Estadísticas**  
 
 ### 🟢 **HU-12: Ver Estadísticas de Canjes y Compras**  
 **Como** administrador, **quiero** ver reportes de compras, puntos acumulados y beneficios canjeados, **para** evaluar la efectividad del programa de fidelización.
