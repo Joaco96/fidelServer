@@ -52,7 +52,7 @@ export const rewardsRegistry: RouteConfig[] = [
     method: "patch",
     path: `/api/v1/rewards/{id}`,
     tags: REWARD_CONTROLLER_TAG,
-    summary: "Actualiza un Beneficio",
+    summary: "Actualiza un beneficio",
     security: [{ bearerAuth: [] }],
     request: {
       body: {
