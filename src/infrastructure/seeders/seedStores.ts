@@ -4,12 +4,12 @@ import { StoresModel } from "../db/models/StoresModel"; // Ajusta el path si es 
 export async function seedStores() {
   try {
     const stores = [
-      new Stores("d31638da-abde-4082-92eb-6bbdf4f17d37", "Tienda modelo", "Quilmes", "1544455665"),
+      new Stores("Tienda modelo", "Quilmes", "1544455665"),
     ];
 
     const existingStores = await StoresModel.findAll();
 
-    const storesToCreate = stores.filter(store => !existingStores.some(existingStore => existingStore.id === store.id))
+    const storesToCreate = stores.filter(store => !existingStores.some(existingStore => existingStore.name === store.name));
 
     if (storesToCreate.length === 0) {
       console.log(

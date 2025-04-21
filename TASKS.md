@@ -50,7 +50,7 @@
 - Se puede definir nombre, descripción, imagen y puntos requeridos.
 - Se debe asignar una cantidad de stock disponible.
 
-### 🟢 **HU-07: Modificar Recompensas**  
+### 🟢 **HU-07: Modificar Recompensas**   [X]
 **Como** administrador, **quiero** modificar o eliminar recompensas, **para** mantener actualizado el catálogo. 
 **Criterios de Aceptación:**  
 - Solo los administradores pueden realizar cambios.
