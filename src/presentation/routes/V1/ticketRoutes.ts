@@ -7,6 +7,11 @@ import { authMiddleware } from "../../../infrastructure/middlewares/authMiddlewa
 
 const router = Router();
 
-router.post("/", authMiddleware, validateSchema(CreateTicketSchema), asyncHandler(TicketController.create));
+router.post(
+  "/", 
+  authMiddleware, 
+  validateSchema(CreateTicketSchema), 
+  asyncHandler(TicketController.create)
+);
 
 export default router;

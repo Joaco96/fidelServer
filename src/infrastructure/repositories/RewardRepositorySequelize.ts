@@ -29,7 +29,7 @@ export class RewardRepositorySequelize implements RewardRepository {
         where: { [key]: value },
         transaction,
       });
-      console.log(foundRewardByKey)
+
       return foundRewardByKey.length ? foundRewardByKey.map((fr) => RewardMapper.toDomain(fr)) : [];
     } catch (error) {
       console.error("Error al buscar el beneficio:", error);
@@ -44,11 +44,26 @@ export class RewardRepositorySequelize implements RewardRepository {
   ): Promise<Rewards> {
     try {
       const updatedData  = await RewardsModel.update(data, { where: { id }, transaction: tx, returning: true });
-      console.log(updatedData)
+
       return RewardMapper.toDomain(updatedData[1][0]);
     } catch (error) {
       console.error("Error al actualizar el beneficio", error);
       throw new Error("No se pudo actualizar el beneficio");
+    }
+  }
+
+  async findAll(
+    transaction?: Transaction
+  ): Promise<Array<Rewards>> {
+    try {
+      const foundRewardByKey = await RewardsModel.findAll({
+        transaction,
+      });
+
+      return foundRewardByKey.length ? foundRewardByKey.map((fr) => RewardMapper.toDomain(fr)) : [];
+    } catch (error) {
+      console.error("Error al buscar los beneficios:", error);
+      throw new Error("No se pudieron encontrar los beneficios");
     }
   }
 }
