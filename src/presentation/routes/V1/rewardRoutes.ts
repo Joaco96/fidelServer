@@ -7,7 +7,25 @@ import { CreateRewardSchema, UpdateRewardParamsSchema, UpdateRewardSchema } from
 
 const router = Router();
 
-router.post("/", authMiddleware, validateSchema(CreateRewardSchema), asyncHandler(RewardController.create));
-router.patch("/:id", authMiddleware, validateSchema(UpdateRewardParamsSchema, "params"), validateSchema(UpdateRewardSchema), asyncHandler(RewardController.update));
+router.get(
+  "/", 
+  authMiddleware, 
+  asyncHandler(RewardController.getAll)
+);
+
+router.post(
+  "/", 
+  authMiddleware, 
+  validateSchema(CreateRewardSchema), 
+  asyncHandler(RewardController.create)
+);
+
+router.patch(
+  "/:id", 
+  authMiddleware, 
+  validateSchema(UpdateRewardParamsSchema, "params"), 
+  validateSchema(UpdateRewardSchema), 
+  asyncHandler(RewardController.update)
+);
 
 export default router;

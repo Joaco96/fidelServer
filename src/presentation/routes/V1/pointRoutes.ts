@@ -7,6 +7,11 @@ import { PointController } from "../../controllers/PointController";
 
 const router = Router();
 
-router.get("/history/:user_id", authMiddleware, validateSchema(GetPointHistoryParamsSchema, "params"), asyncHandler(PointController.getHistoryByUser));
+router.get(
+  "/history/:user_id", 
+  authMiddleware, 
+  validateSchema(GetPointHistoryParamsSchema, "params"), 
+  asyncHandler(PointController.getHistoryByUser)
+);
 
 export default router;

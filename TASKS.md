@@ -66,7 +66,7 @@
 
 ## **🔹 EPIC 4: Canje de Recompensas**  
 
-### 📌 **HU-09: Explorar Recompensas Disponibles**  
+### 🟢 **HU-09: Explorar Recompensas Disponibles**   [X]  
 **Como** usuario, **quiero** ver el catálogo de beneficios y experiencias disponibles, **para** decidir en qué gastar mis puntos.  
 **Criterios de Aceptación:**  
 - Se muestra una lista de recompensas con su imagen, descripción y costo en puntos.  
