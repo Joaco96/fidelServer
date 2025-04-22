@@ -7,6 +7,7 @@ export class RedemptionsModel extends Model {
   declare user_id: UUID;
   declare reward_id: UUID;
   declare points_used: number;
+  declare is_delivered: boolean;
   declare createdAt: Date;
   declare updatedAt: Date;
 }
@@ -28,6 +29,10 @@ RedemptionsModel.init(
     },
     points_used: {
       type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    is_delivered: {
+      type: DataTypes.BOOLEAN,
       allowNull: false,
     },
   },
