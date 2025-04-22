@@ -18,10 +18,10 @@ export class PointRepositorySequelize implements PointRepository {
     }
   }
 
-  async findAllByUserId(userId: string, transaction?: Transaction): Promise<Array<Points>> {
+  async findAll(transaction?: Transaction, filters: Partial<Points> = {}): Promise<Array<Points>> {
     try {
       const pointsHistory = await PointsModel.findAll({ 
-        where: { user_id: userId },
+        where: filters,
         transaction 
       });
 

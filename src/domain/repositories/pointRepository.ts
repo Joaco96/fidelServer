@@ -1,6 +1,6 @@
 import { Points } from "../entities/Points";
 
 export interface PointRepository<TTx = unknown>  {
-  findAllByUserId(userId: string, transaction: TTx): Promise<Array<Points>>;
+  findAll(transaction: TTx, filters?: Partial<Points>): Promise<Array<Points>>;
   save(point: Points, transaction: TTx): Promise<Points>;
 }
