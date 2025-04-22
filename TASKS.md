@@ -60,6 +60,7 @@
 **Como** administrador, **quiero** actualizar el stock de recompensas, **para** evitar que los clientes intenten canjear beneficios agotados.
 **Criterios de Aceptación:**  
 - Se puede aumentar o reducir el stock manualmente.
+- Cuando se genera un movimiento de stock, se debe actualizar el balance del reward.
 - Se muestra un aviso si una recompensa se queda sin stock.
 
 ---  
@@ -76,7 +77,8 @@
 **Como** usuario, **quiero** canjear mis puntos por un beneficio, **para** disfrutar las recompensas del programa de fidelización.  
 **Criterios de Aceptación:**  
 - Se valida que el usuario tenga suficientes puntos.  
-- Se descuenta el saldo de puntos correspondiente.  
+- Se descuenta el saldo de puntos correspondiente al usuario.  
+- Se debe generar el movimiento de stock correspondiente a la cantidad de canje.
 - Se genera un comprobante de canje.  
 
 ### 📌 **HU-11: Confirmar Canje en el Centro Comercial**  
