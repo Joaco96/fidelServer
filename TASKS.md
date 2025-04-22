@@ -56,7 +56,7 @@
 - Solo los administradores pueden realizar cambios.
 - Se puede modificar cualquier campo menos el stock.
 
-### 📌 **HU-08: Gestión de Stock de Recompensas**  
+### 🟢 **HU-08: Gestión de Stock de Recompensas**   [X]  
 **Como** administrador, **quiero** actualizar el stock de recompensas, **para** evitar que los clientes intenten canjear beneficios agotados.
 **Criterios de Aceptación:**  
 - Se puede aumentar o reducir el stock manualmente.
