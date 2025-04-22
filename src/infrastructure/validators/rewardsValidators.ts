@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { extendZodWithOpenApi } from "@asteasolutions/zod-to-openapi";
+import { createFilterSchemaFromBase } from "../../utils/filters/createFilterSchemaFromBase";
 
 extendZodWithOpenApi(z);
 
@@ -25,3 +26,5 @@ export const UpdateRewardSchema = RewardSchema.omit({
   stock_balance: true,
 });
 export const UpdateRewardParamsSchema = RewardSchema.pick({ id: true });
+
+export const RewardFiltersSchema = createFilterSchemaFromBase(RewardSchema);

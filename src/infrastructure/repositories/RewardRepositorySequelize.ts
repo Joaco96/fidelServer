@@ -53,16 +53,20 @@ export class RewardRepositorySequelize implements RewardRepository {
   }
 
   async findAll(
-    transaction?: Transaction
+    transaction?: Transaction,
+    filters: Partial<Rewards> = {}
   ): Promise<Array<Rewards>> {
     try {
-      const foundRewardByKey = await RewardsModel.findAll({
+      const foundRewards = await RewardsModel.findAll({
+        where: filters,
         transaction,
       });
-
-      return foundRewardByKey.length ? foundRewardByKey.map((fr) => RewardMapper.toDomain(fr)) : [];
+  
+      return foundRewards.length
+        ? foundRewards.map((fr) => RewardMapper.toDomain(fr))
+        : [];
     } catch (error) {
-      console.error("Error al buscar los beneficios:", error);
+      console.error("Error al buscar los beneficios con filtros:", error);
       throw new Error("No se pudieron encontrar los beneficios");
     }
   }

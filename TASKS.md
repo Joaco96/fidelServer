@@ -61,7 +61,7 @@
 **Criterios de Aceptación:**  
 - Se puede aumentar o reducir el stock manualmente.
 - Cuando se genera un movimiento de stock, se debe actualizar el balance del reward.
-- Se muestra un aviso si una recompensa se queda sin stock.
+- Se puede ver si una recompensa se queda sin stock.
 
 ---  
 
@@ -120,3 +120,6 @@
 - Se requiere HTTPS para todas las conexiones.
 
 ---  
+
+### 📌 Opcionales Extra
+- Filtros de texto parcial, rango de fechas y rango de numeros

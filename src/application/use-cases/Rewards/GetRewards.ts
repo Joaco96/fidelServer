@@ -8,9 +8,9 @@ export class GetRewards<T> {
     private uow: UnitOfWork<T>
   ) {}
 
-  async execute(): Promise<Rewards[]> {
+  async execute(filters: Partial<Rewards>): Promise<Rewards[]> {
     return await this.uow.runInTransaction(async (transaction) => {
-      return await this.rewardRepository.findAll(transaction);
+      return await this.rewardRepository.findAll(transaction, filters);
     });
   }
 }

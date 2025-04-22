@@ -6,6 +6,7 @@ import {
 import {
   CreateRewardResponseSchema,
   CreateRewardSchema,
+  RewardFiltersSchema,
   RewardSchema,
   UpdateRewardParamsSchema,
   UpdateRewardSchema,
@@ -20,6 +21,9 @@ export const rewardsRegistry: RouteConfig[] = [
     tags: REWARD_CONTROLLER_TAG,
     summary: "Obtener lista de beneficios",
     security: [{ bearerAuth: [] }], // Para que se vea el candado en swagger y poder autenticar
+    request: {
+      query: RewardFiltersSchema,
+    },
     responses: {
       201: {
         description: "Beneficios obtenidos exitosamente",

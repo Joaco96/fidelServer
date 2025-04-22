@@ -27,8 +27,8 @@ export class RewardController {
     res.status(200).sendResponse(updatedReward);
   }
 
-  static async getAll(_req: Request, res: Response) {
-    const rewards = await getAllRewards.execute();
+  static async getAll(req: Request, res: Response) {
+    const rewards = await getAllRewards.execute(req.query);
     res.status(200).sendResponse(rewards);
   }
 }

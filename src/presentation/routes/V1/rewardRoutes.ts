@@ -3,13 +3,14 @@ import { validateSchema } from "../../../infrastructure/middlewares/validateSche
 import { asyncHandler } from "../../../utils/asyncHandler";
 import { authMiddleware } from "../../../infrastructure/middlewares/authMiddleware";
 import { RewardController } from "../../controllers/RewardController";
-import { CreateRewardSchema, UpdateRewardParamsSchema, UpdateRewardSchema } from "../../../infrastructure/validators/rewardsValidators";
+import { CreateRewardSchema, RewardFiltersSchema, UpdateRewardParamsSchema, UpdateRewardSchema } from "../../../infrastructure/validators/rewardsValidators";
 
 const router = Router();
 
 router.get(
   "/", 
   authMiddleware, 
+  validateSchema(RewardFiltersSchema, "query"), 
   asyncHandler(RewardController.getAll)
 );
 
