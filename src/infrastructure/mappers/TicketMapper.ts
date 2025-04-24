@@ -1,6 +1,6 @@
 import { Tickets } from "../../domain/entities/Tickets";
 import { isMapperClass } from "../../domain/mapper";
-import { TicketsModel } from "../db/models/TicketsModel";
+import { TicketsModel } from "../db/models";
 
 export class TicketMapper {
   static toDomain(ticketsModel: TicketsModel): Tickets {

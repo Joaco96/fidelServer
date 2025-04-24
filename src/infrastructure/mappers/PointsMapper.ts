@@ -1,6 +1,6 @@
 import { Points } from "../../domain/entities/Points";
 import { isMapperClass } from "../../domain/mapper";
-import { PointsModel } from "../db/models/PointsModel";
+import {PointsModel} from "../db/models";
 
 export class PointsMapper {
   static toDomain(pointsModel: PointsModel): Points {

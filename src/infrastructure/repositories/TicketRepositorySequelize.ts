@@ -1,8 +1,8 @@
 import { Transaction } from "sequelize";
 import { Tickets } from "../../domain/entities/Tickets";
 import { TicketRepository } from "../../domain/repositories/ticketRepository";
-import { TicketsModel } from "../db/models/TicketsModel";
 import { TicketMapper } from "../mappers/TicketMapper";
+import { TicketsModel } from "../db/models";
 
 export class TicketRepositorySequelize implements TicketRepository {
   async save(ticket: Tickets, transaction?: Transaction): Promise<Tickets> {

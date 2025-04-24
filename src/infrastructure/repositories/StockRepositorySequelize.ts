@@ -2,7 +2,7 @@ import { Transaction } from "sequelize";
 import { StockRepository } from "../../domain/repositories/stockRepository";
 import { Stock } from "../../domain/entities/Stock";
 import { StockMapper } from "../mappers/StockMapper";
-import { StocksModel } from "../db/models/StocksModel";
+import { StocksModel } from "../db/models";
 
 export class StockRepositorySequelize implements StockRepository {
   async save(stock: Stock, transaction?: Transaction): Promise<Stock> {

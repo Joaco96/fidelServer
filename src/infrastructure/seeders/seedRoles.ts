@@ -1,5 +1,5 @@
 import { Role, RoleIds } from "../../domain/entities/Role";
-import { RoleModel } from "../db/models/RoleModel"; // Ajusta el path si es necesario
+import { RoleModel } from "../db/models";
 
 export async function seedRoles() {
   try {

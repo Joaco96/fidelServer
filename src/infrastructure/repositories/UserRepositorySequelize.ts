@@ -1,8 +1,8 @@
 import { Transaction } from "sequelize";
 import { User } from "../../domain/entities/User";
 import { UserRepository } from "../../domain/repositories/userRepository";
-import { UsersModel } from "../db/models/UsersModel";
 import { UserMapper } from "../mappers/UserMapper";
+import { UsersModel } from "../db/models";
 
 export class UserRepositorySequelize implements UserRepository {
   async save(user: User, transaction: Transaction): Promise<User> {

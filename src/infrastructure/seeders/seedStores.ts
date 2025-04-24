@@ -1,5 +1,5 @@
 import { Stores } from "../../domain/entities/Stores";
-import { StoresModel } from "../db/models/StoresModel"; // Ajusta el path si es necesario
+import { StoresModel } from "../db/models";
 
 export async function seedStores() {
   try {

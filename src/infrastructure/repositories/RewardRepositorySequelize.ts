@@ -1,8 +1,8 @@
 import { Transaction } from "sequelize";
 import { RewardRepository } from "../../domain/repositories/rewardRepository";
 import { Rewards } from "../../domain/entities/Rewards";
-import { RewardsModel } from "../db/models/RewardsModel";
 import { RewardMapper } from "../mappers/RewardMapper";
+import { RewardsModel } from "../db/models";
 
 export class RewardRepositorySequelize implements RewardRepository {
   async save(points: Rewards, transaction?: Transaction): Promise<Rewards> {

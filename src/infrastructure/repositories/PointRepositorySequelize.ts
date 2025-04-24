@@ -1,8 +1,8 @@
 import { Transaction } from "sequelize";
 import { Points } from "../../domain/entities/Points";
 import { PointRepository } from "../../domain/repositories/pointRepository";
-import { PointsModel } from "../db/models/PointsModel";
 import { PointsMapper } from "../mappers/PointsMapper";
+import { PointsModel } from "../db/models";
 
 export class PointRepositorySequelize implements PointRepository {
   async save(points: Points, transaction?: Transaction): Promise<Points> {

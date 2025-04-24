@@ -1,6 +1,6 @@
 import { Rewards } from "../../domain/entities/Rewards";
 import { isMapperClass } from "../../domain/mapper";
-import { RewardsModel } from "../db/models/RewardsModel";
+import { RewardsModel } from "../db/models";
 
 export class RewardMapper {
   static toDomain(rewardsModel: RewardsModel): Rewards {

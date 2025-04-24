@@ -1,6 +1,6 @@
 import { Stock } from "../../domain/entities/Stock";
 import { isMapperClass } from "../../domain/mapper";
-import { StocksModel } from "../db/models/StocksModel";
+import { StocksModel } from "../db/models";
 
 export class StockMapper {
   static toDomain(stocksModel: StocksModel): Stock {

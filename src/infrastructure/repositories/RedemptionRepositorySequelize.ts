@@ -2,10 +2,7 @@ import { Transaction } from "sequelize";
 import { Redemptions } from "../../domain/entities/Redemptions";
 import { RedemptionRepository } from "../../domain/repositories/redemptionRepository";
 import { RedemptionsMapper } from "../mappers/RedemptionsMapper";
-import { RedemptionsModel } from "../db/models/RedemptionsModel";
-import models from "../db/models";
-
-const { PointsModel, StocksModel } = models;
+import { PointsModel, RedemptionsModel, StocksModel } from "../db/models";
 
 export class RedemptionRepositorySequelize implements RedemptionRepository {
   async save(redemption: Redemptions, transaction?: Transaction): Promise<Redemptions> {

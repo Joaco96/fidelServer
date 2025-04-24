@@ -1,8 +1,6 @@
 import { Redemptions } from "../../domain/entities/Redemptions";
 import { isMapperClass } from "../../domain/mapper";
-import { PointsModel } from "../db/models/PointsModel";
-import { RedemptionsModel } from "../db/models/RedemptionsModel";
-import { StocksModel } from "../db/models/StocksModel";
+import { PointsModel, RedemptionsModel, StocksModel } from "../db/models";
 
 export class RedemptionsMapper {
   static toDomain(redemptionsModel: RedemptionsModel): Redemptions {
