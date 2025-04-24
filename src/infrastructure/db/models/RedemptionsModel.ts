@@ -4,9 +4,8 @@ import { UUID } from "crypto";
 
 export class RedemptionsModel extends Model {
   declare id: UUID;
-  declare user_id: UUID;
-  declare reward_id: UUID;
-  declare points_used: number;
+  declare point_id: UUID;
+  declare stock_id: UUID;
   declare is_delivered: boolean;
   declare createdAt: Date;
   declare updatedAt: Date;
@@ -19,16 +18,12 @@ RedemptionsModel.init(
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
     },
-    user_id: {
+    point_id: {
       type: DataTypes.UUID,
       allowNull: false,
     },
-    reward_id: {
+    stock_id: {
       type: DataTypes.UUID,
-      allowNull: false,
-    },
-    points_used: {
-      type: DataTypes.INTEGER,
       allowNull: false,
     },
     is_delivered: {

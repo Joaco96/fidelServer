@@ -79,7 +79,7 @@
 - Se valida que el usuario tenga suficientes puntos.  
 - Se descuenta el saldo de puntos correspondiente al usuario.  
 - Se debe generar el movimiento de stock correspondiente a la cantidad de canje.
-- Se genera un comprobante de canje.  
+- Se genera un comprobante de canje en formato QR.  
 
 ### 📌 **HU-11: Confirmar Canje en el Centro Comercial**  
 **Como** usuario, **quiero** presentar mi comprobante de canje en el punto de información, **para** recibir mi beneficio.  
@@ -113,7 +113,7 @@
 - Se pueden asignar roles de usuario normal, empleado y administrador.
 - Los empleados solo pueden validar compras y canjes.
 
-### 📌 **HU-15: Seguridad en la Plataforma**   [X]
+### 🟢 **HU-15: Seguridad en la Plataforma**   [X]
 **Como** usuario, **quiero** cque mi información esté protegida, **para** evitar accesos no autorizados.
 **Criterios de Aceptación:**  
 - Se implementa autenticación.

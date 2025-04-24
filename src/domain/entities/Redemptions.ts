@@ -1,17 +1,21 @@
 import { randomUUID, UUID } from "crypto";
+import { Rewards } from "./Rewards";
 
 export class Redemptions {
   public readonly id: UUID;
-  public readonly is_delivered: boolean;
+  public reward?: Rewards;
 
   constructor(
     public user_id: UUID,
     public reward_id: UUID,
-    public points_used: number,
+    public quantity: number,
     public createdAt?: Date,
-    public updatedAt?: Date
+    public updatedAt?: Date,
+    public is_delivered?: boolean,
+    public point_id?: UUID,
+    public stock_id?: UUID,
   ) {
     this.id = randomUUID();
-    this.is_delivered = false;
+    this.is_delivered = is_delivered ?? false;
   }
 }

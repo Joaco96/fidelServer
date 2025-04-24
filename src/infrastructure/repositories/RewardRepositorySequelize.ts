@@ -7,12 +7,12 @@ import { RewardMapper } from "../mappers/RewardMapper";
 export class RewardRepositorySequelize implements RewardRepository {
   async save(points: Rewards, transaction?: Transaction): Promise<Rewards> {
     try {
-      const createdPoint = await RewardsModel.create(
+      const createdReward = await RewardsModel.create(
         RewardMapper.toPersistence(points),
         { transaction }
       );
 
-      return RewardMapper.toDomain(createdPoint);
+      return RewardMapper.toDomain(createdReward);
     } catch (error) {
       console.error("Error al guardar el beneficio:", error);
       throw new Error("No se pudo guardar el beneficio");

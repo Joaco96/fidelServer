@@ -20,26 +20,26 @@ const models = {
 };
 
 // Definir las relaciones entre los modelos
-UsersModel.hasMany(RedemptionsModel, { foreignKey: "user_id"});
-RedemptionsModel.belongsTo(UsersModel, { foreignKey: "user_id"});
+models.PointsModel.hasMany(models.RedemptionsModel, { foreignKey: "point_id"});
+models.RedemptionsModel.belongsTo(models.PointsModel, { foreignKey: "point_id", as: "point"});
 
-UsersModel.hasMany(PointsModel, { foreignKey: "user_id"});
-PointsModel.belongsTo(UsersModel, { foreignKey: "user_id"});
+models.UsersModel.hasMany(models.PointsModel, { foreignKey: "user_id"});
+models.PointsModel.belongsTo(models.UsersModel, { foreignKey: "user_id"});
 
-UsersModel.hasMany(TicketsModel, { foreignKey: "user_id"});
-TicketsModel.belongsTo(UsersModel, { foreignKey: "user_id"});
+models.UsersModel.hasMany(models.TicketsModel, { foreignKey: "user_id"});
+models.TicketsModel.belongsTo(models.UsersModel, { foreignKey: "user_id"});
 
-RewardsModel.hasMany(RedemptionsModel, { foreignKey: "reward_id"});
-RedemptionsModel.belongsTo(RewardsModel, { foreignKey: "reward_id"});
+models.StocksModel.hasMany(models.RedemptionsModel, { foreignKey: "stock_id"});
+models.RedemptionsModel.belongsTo(models.StocksModel, { foreignKey: "stock_id", as: "stock"});
 
-RewardsModel.hasMany(StocksModel, { foreignKey: "reward_id" });
-StocksModel.belongsTo(RewardsModel, { foreignKey: "reward_id" });
+models.RewardsModel.hasMany(models.StocksModel, { foreignKey: "reward_id" });
+models.StocksModel.belongsTo(models.RewardsModel, { foreignKey: "reward_id" });
 
-StoresModel.hasMany(TicketsModel, { foreignKey: "store_id"});
-TicketsModel.belongsTo(StoresModel, { foreignKey: "store_id"});
+models.StoresModel.hasMany(models.TicketsModel, { foreignKey: "store_id"});
+models.TicketsModel.belongsTo(models.StoresModel, { foreignKey: "store_id"});
 
-RoleModel.hasMany(UsersModel, { foreignKey: "role_id"});
-UsersModel.belongsTo(RoleModel, { foreignKey: "role_id" });
+models.RoleModel.hasMany(models.UsersModel, { foreignKey: "role_id"});
+models.UsersModel.belongsTo(models.RoleModel, { foreignKey: "role_id" });
 
 // Exportar modelos
 export default models;
