@@ -7,6 +7,7 @@ export class RedemptionsModel extends Model {
   declare point_id: UUID;
   declare stock_id: UUID;
   declare is_delivered: boolean;
+  declare qr_code: string;
   declare createdAt: Date;
   declare updatedAt: Date;
 }
@@ -30,6 +31,9 @@ RedemptionsModel.init(
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
+    qr_code: {
+      type: DataTypes.TEXT,
+    }
   },
   { sequelize, modelName: "Redemptions" }
 );

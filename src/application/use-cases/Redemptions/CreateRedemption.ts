@@ -1,3 +1,4 @@
+import serverConfig from "../../../config/server.config";
 import { Points } from "../../../domain/entities/Points";
 import { Redemptions } from "../../../domain/entities/Redemptions";
 import { Stock } from "../../../domain/entities/Stock";
@@ -5,6 +6,7 @@ import { PointRepository } from "../../../domain/repositories/pointRepository";
 import { RedemptionRepository } from "../../../domain/repositories/redemptionRepository";
 import { RewardRepository } from "../../../domain/repositories/rewardRepository";
 import { UserRepository } from "../../../domain/repositories/userRepository";
+import { generateQr } from "../../../domain/services/qrService";
 import { UnitOfWork } from "../../../domain/transaction";
 import { CreateStock } from "../Stock/CreateStock";
 
@@ -49,6 +51,8 @@ export class CreateRedemption<T> {
         newPoint.id,
         newStock.id
       );
+
+      newRedemption.qr_code = await generateQr(serverConfig.frontend_url!, serverConfig.frontend_control_route!, newRedemption.id);
       return await this.redemptionRepository.save(newRedemption, transaction);
     });
   }

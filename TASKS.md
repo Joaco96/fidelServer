@@ -73,7 +73,7 @@
 - Se muestra una lista de recompensas con su imagen, descripción y costo en puntos.  
 - Se indica la disponibilidad de stock de cada recompensa.  
 
-### 📌 **HU-10: Canjear Puntos por Recompensas**  
+### 🟢 **HU-10: Canjear Puntos por Recompensas**   [X]  
 **Como** usuario, **quiero** canjear mis puntos por un beneficio, **para** disfrutar las recompensas del programa de fidelización.  
 **Criterios de Aceptación:**  
 - Se valida que el usuario tenga suficientes puntos.  
@@ -85,9 +85,20 @@
 **Como** usuario, **quiero** presentar mi comprobante de canje en el punto de información, **para** recibir mi beneficio.  
 **Criterios de Aceptación:**  
 - El empleado verifica el código del comprobante en el sistema.  
+- Se obtienen los datos de redencion por id.
 - Se marca el beneficio como "entregado".  
 
 ---  
+
+### 🟢 **HU-15: Seguridad en la Plataforma**   [X]
+**Como** usuario, **quiero** cque mi información esté protegida, **para** evitar accesos no autorizados.
+**Criterios de Aceptación:**  
+- Se implementa autenticación.
+- Se requiere HTTPS para todas las conexiones.
+
+---  
+
+### 📌 Post MVP
 
 ## **🔹 EPIC 5: Reportes y Estadísticas**  
 
@@ -113,13 +124,5 @@
 - Se pueden asignar roles de usuario normal, empleado y administrador.
 - Los empleados solo pueden validar compras y canjes.
 
-### 🟢 **HU-15: Seguridad en la Plataforma**   [X]
-**Como** usuario, **quiero** cque mi información esté protegida, **para** evitar accesos no autorizados.
-**Criterios de Aceptación:**  
-- Se implementa autenticación.
-- Se requiere HTTPS para todas las conexiones.
 
----  
-
-### 📌 Opcionales Extra
 - Filtros de texto parcial, rango de fechas y rango de numeros

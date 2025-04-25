@@ -4,6 +4,7 @@ import { Rewards } from "./Rewards";
 export class Redemptions {
   public readonly id: UUID;
   public reward?: Rewards;
+  public qr_code?: string
 
   constructor(
     public user_id: UUID,
