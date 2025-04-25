@@ -8,9 +8,6 @@ export class RedemptionsMapper {
     const stockMovement = redemptionsModel.get("stock") as StocksModel;
     const redemption = redemptionsModel.get() as RedemptionsModel;
 
-    console.log(pointsMovement)
-    console.log(stockMovement)
-
     return new Redemptions(
       pointsMovement.user_id,
       stockMovement.reward_id,
