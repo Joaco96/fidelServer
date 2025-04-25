@@ -7,20 +7,22 @@ import { UserRepositorySequelize } from "../../infrastructure/repositories/UserR
 import { PointRepositorySequelize } from "../../infrastructure/repositories/PointRepositorySequelize";
 import { StockRepositorySequelize } from "../../infrastructure/repositories/StockRepositorySequelize";
 import { RewardRepositorySequelize } from "../../infrastructure/repositories/RewardRepositorySequelize";
+import { CreateStock } from "../../application/use-cases/Stock/CreateStock";
 
 const unitOfWork = new SequelizeUnitOfWork(sequelize);
 const redemptionRepository = new RedemptionRepositorySequelize();
 const userRepository = new UserRepositorySequelize();
 const pointRepository = new PointRepositorySequelize();
-const stockRepository = new StockRepositorySequelize();
 const rewardRepository = new RewardRepositorySequelize();
+const stockRepository = new StockRepositorySequelize();
+const createStock = new CreateStock(stockRepository, rewardRepository, unitOfWork);
 const createRedemption = new CreateRedemption(
   redemptionRepository, 
   pointRepository, 
-  stockRepository, 
   userRepository, 
   rewardRepository, 
-  unitOfWork
+  unitOfWork,
+  createStock
 );
 
 export class RedemptionController {

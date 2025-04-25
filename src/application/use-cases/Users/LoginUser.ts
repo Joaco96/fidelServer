@@ -22,7 +22,6 @@ export class LoginUser<T> {
         role: user.role_id,
         name: user.name,
         email: user.email,
-        pointsBalance: user.points_balance,
       });
     });
   }

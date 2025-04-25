@@ -8,7 +8,6 @@ export interface CustomJwtPayload extends JwtPayload {
   role_id: number;
   name: string;
   email: string;
-  points_balance: number;
 }
 
 export const generateToken = (payload: any) =>

@@ -43,7 +43,7 @@ export const userRegistry: RouteConfig[] = [
     method: "post",
     path: `/api/v1/users/login`,
     tags: USER_CONTROLLER_TAG,
-    summary: "Logea un usuario",
+    summary: "Loguea un usuario",
     request: {
       body: {
         content: {

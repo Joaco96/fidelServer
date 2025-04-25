@@ -4,18 +4,18 @@ import { Stock } from "../../../domain/entities/Stock";
 import { PointRepository } from "../../../domain/repositories/pointRepository";
 import { RedemptionRepository } from "../../../domain/repositories/redemptionRepository";
 import { RewardRepository } from "../../../domain/repositories/rewardRepository";
-import { StockRepository } from "../../../domain/repositories/stockRepository";
 import { UserRepository } from "../../../domain/repositories/userRepository";
 import { UnitOfWork } from "../../../domain/transaction";
+import { CreateStock } from "../Stock/CreateStock";
 
 export class CreateRedemption<T> {
   constructor(
     private redemptionRepository: RedemptionRepository,
     private pointRepository: PointRepository,
-    private stockRepository: StockRepository,
     private userRepository: UserRepository,
     private rewardRepository: RewardRepository,
-    private uow: UnitOfWork<T>
+    private uow: UnitOfWork<T>,
+    private createStock: CreateStock<T>
   ) {}
 
   async execute(redemption: Redemptions): Promise<Redemptions> {
@@ -24,37 +24,31 @@ export class CreateRedemption<T> {
         this.userRepository.findById(redemption.user_id, transaction),
         this.rewardRepository.findBy("id", redemption.reward_id, transaction),
       ]);
-      
-      if (!foundReward.length) throw new Error("Beneficio inexistente");
-      if (foundReward[0].stock_balance < redemption.quantity) throw new Error("No hay stock suficiente del beneficio elegido");
+
+      if (!foundUser) throw new Error("Usuario no existe");
+      if (!foundReward[0]) throw new Error("Beneficio inexistente");
 
       const pointsUsed = redemption.quantity * foundReward[0].points_cost;
 
-      if (!foundUser) throw new Error("Usuario no existe");
-      if (foundUser.points_balance < pointsUsed) throw new Error("El usuario no posee puntos suficientes");
+      if (foundUser.points_balance < pointsUsed)
+        throw new Error("El usuario no posee puntos suficientes");
 
-      const newPoint = new Points(
-        redemption.user_id,
-        pointsUsed * (-1)
-      );
-      const newStock = new Stock(
-        foundReward[0].id,
-        redemption.quantity * (-1)
-      );
+      const newPoint = new Points(redemption.user_id, -pointsUsed);
+      await this.pointRepository.save(newPoint, transaction);
+
+      const newStock = new Stock(foundReward[0].id, -redemption.quantity);
+      await this.createStock.execute(newStock, transaction);
 
       const newRedemption = new Redemptions(
-        foundUser.id, 
-        foundReward[0].id, 
+        foundUser.id,
+        foundReward[0].id,
         redemption.quantity,
-        undefined, 
+        undefined,
         undefined,
         false,
         newPoint.id,
         newStock.id
       );
-
-      await this.pointRepository.save(newPoint, transaction);
-      await this.stockRepository.save(newStock, transaction);
       return await this.redemptionRepository.save(newRedemption, transaction);
     });
   }
