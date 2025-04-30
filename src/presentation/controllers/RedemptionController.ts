@@ -8,6 +8,7 @@ import { PointRepositorySequelize } from "../../infrastructure/repositories/Poin
 import { StockRepositorySequelize } from "../../infrastructure/repositories/StockRepositorySequelize";
 import { RewardRepositorySequelize } from "../../infrastructure/repositories/RewardRepositorySequelize";
 import { CreateStock } from "../../application/use-cases/Stock/CreateStock";
+import { GetRedemptions } from "../../application/use-cases/Redemptions/GetRedemptions";
 
 const unitOfWork = new SequelizeUnitOfWork(sequelize);
 const redemptionRepository = new RedemptionRepositorySequelize();
@@ -24,6 +25,7 @@ const createRedemption = new CreateRedemption(
   unitOfWork,
   createStock
 );
+const getAllRedemptions = new GetRedemptions(redemptionRepository, unitOfWork);
 
 export class RedemptionController {
   static async create(req: Request, res: Response) {
@@ -34,4 +36,8 @@ export class RedemptionController {
     });
   }
 
+  static async getAll(req: Request, res: Response) {
+      const redemptions = await getAllRedemptions.execute(req.query);
+      res.status(200).sendResponse(redemptions);
+    }
 }

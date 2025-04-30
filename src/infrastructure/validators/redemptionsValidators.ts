@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { extendZodWithOpenApi } from "@asteasolutions/zod-to-openapi";
 import { RewardSchema } from "./rewardsValidators";
+import { createFilterSchemaFromBase } from "../../utils/filters/createFilterSchemaFromBase";
 
 extendZodWithOpenApi(z);
 
@@ -31,3 +32,5 @@ export const CreateRedemtionResponseSchema = z.object({
   message: z.string(),
   id: RedemptionSchema.shape.id,
 });
+
+export const RedemptionFiltersSchema = createFilterSchemaFromBase(RedemptionSchema);

@@ -81,7 +81,7 @@
 - Se debe generar el movimiento de stock correspondiente a la cantidad de canje.
 - Se genera un comprobante de canje en formato QR.  
 
-### 📌 **HU-11: Confirmar Canje en el Centro Comercial**  
+### 📌 **HU-11: Confirmar Canje en el Centro Comercial**  -> Ver CreateTicket - dentro del newPoints hay un popint_earned???
 **Como** usuario, **quiero** presentar mi comprobante de canje en el punto de información, **para** recibir mi beneficio.  
 **Criterios de Aceptación:**  
 - El empleado verifica el código del comprobante en el sistema.  
