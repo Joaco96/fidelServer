@@ -21,6 +21,7 @@ export const RedemptionSchema = z.object({
   quantity: z.number().openapi({ example: 0 }),
   created_at: z.date().openapi({ example: "2025-04-15T21:16:10.095Z" }),
   updated_at: z.date().openapi({ example: "2025-04-15T21:16:10.095Z" }),
+  is_delivered: z.string().openapi({ example: "false" }),
 });
 
 export const GetRedemptionSchema = z.array(RedemptionSchema.extend({
@@ -33,4 +34,4 @@ export const CreateRedemtionResponseSchema = z.object({
   id: RedemptionSchema.shape.id,
 });
 
-export const RedemptionFiltersSchema = createFilterSchemaFromBase(RedemptionSchema);
+export const RedemptionFiltersSchema = createFilterSchemaFromBase(RedemptionSchema.omit({quantity: true}));

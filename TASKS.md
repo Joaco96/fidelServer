@@ -124,5 +124,5 @@
 - Se pueden asignar roles de usuario normal, empleado y administrador.
 - Los empleados solo pueden validar compras y canjes.
 
-
+- Optimizar el llamado de getRedemptions con QR si trae problemas.
 - Filtros de texto parcial, rango de fechas y rango de numeros

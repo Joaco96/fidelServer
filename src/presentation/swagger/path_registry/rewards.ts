@@ -19,7 +19,7 @@ export const rewardsRegistry: RouteConfig[] = [
     method: "get",
     path: `/api/v1/rewards`,
     tags: REWARD_CONTROLLER_TAG,
-    summary: "Obtener lista de beneficios filtrados",
+    summary: "Obtiene lista de beneficios filtrados",
     security: [{ bearerAuth: [] }], // Para que se vea el candado en swagger y poder autenticar
     request: {
       query: RewardFiltersSchema,

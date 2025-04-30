@@ -18,6 +18,5 @@ export function createFilterSchemaFromBase<T extends ZodObject<any>>(
       newShape[key] = (value as any).optional(); // Otros se mantienen pero opcionales
     }
   }
-
   return z.object(newShape);
 }

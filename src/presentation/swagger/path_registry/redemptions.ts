@@ -46,7 +46,7 @@ export const redemptionsRegistry: RouteConfig[] = [
       method: "get",
       path: `/api/v1/redemptions`,
       tags: REDEMPTIONS_CONTROLLER_TAG,
-      summary: "Obtener lista de canjes filtrados",
+      summary: "Obtiene lista de canjes filtrados",
       security: [{ bearerAuth: [] }], // Para que se vea el candado en swagger y poder autenticar
       request: {
         query: RedemptionFiltersSchema,

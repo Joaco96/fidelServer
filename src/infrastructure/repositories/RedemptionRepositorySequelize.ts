@@ -3,6 +3,7 @@ import { Redemptions } from "../../domain/entities/Redemptions";
 import { RedemptionRepository } from "../../domain/repositories/redemptionRepository";
 import { RedemptionsMapper } from "../mappers/RedemptionsMapper";
 import { PointsModel, RedemptionsModel, StocksModel } from "../db/models";
+import { parseBoolean } from "../../utils/parseBoolean";
 
 export class RedemptionRepositorySequelize implements RedemptionRepository {
   async save(
@@ -41,6 +42,7 @@ export class RedemptionRepositorySequelize implements RedemptionRepository {
   ): Promise<Array<Redemptions>> {
     try {
       const includeOptions: any[] = [];
+      const whereClause: any = {};
 
       if (filters.user_id) {
         includeOptions.push({
@@ -70,11 +72,21 @@ export class RedemptionRepositorySequelize implements RedemptionRepository {
         });
       }
 
+      if (filters.is_delivered !== undefined) {
+        const parseFilter = parseBoolean(`${filters.is_delivered}`)
+        whereClause.is_delivered = parseFilter;
+      }
+
+      if (filters.id) {
+        whereClause.id = filters.id;
+      }
+
       const foundRedemptions = await RedemptionsModel.findAll({
+        where: whereClause,
         include: includeOptions,
         transaction,
       });
-
+      
       return foundRedemptions.length
         ? foundRedemptions.map((fr) => RedemptionsMapper.toDomain(fr))
         : [];
