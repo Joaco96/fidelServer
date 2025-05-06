@@ -1,14 +1,13 @@
-import { Stores } from "../../../domain/entities/Stores";
 import { StoreRepository } from "../../../domain/repositories/storeRepository";
 import { UnitOfWork } from "../../../domain/transaction";
 
-export class UpdateStore<T> {
+export class DeleteStore<T> {
   constructor(
     private storeRepository: StoreRepository,
     private uow: UnitOfWork<T>
   ) {}
 
-  async execute(id: string, data: Partial<Stores>): Promise<Stores> {
+  async execute(id: string): Promise<void> {
     return await this.uow.runInTransaction(async (transaction) => {
       const foundStore = await this.storeRepository.findBy(
         "id",
@@ -16,7 +15,7 @@ export class UpdateStore<T> {
         transaction
       );
       if (!foundStore.length) throw new Error("Store inexistente");
-      return await this.storeRepository.update(id, data, transaction);
+      return await this.storeRepository.delete(id, transaction);
     });
   }
 }

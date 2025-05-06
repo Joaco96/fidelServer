@@ -27,6 +27,6 @@ export const UpdateStoreSchema = StoreSchema.omit({
   created_at: true, 
   updated_at: true
 }).partial();
-export const UpdateStoreParamsSchema = StoreSchema.pick({ id: true });
+export const UpdateOrDeleteStoreParamsSchema = StoreSchema.pick({ id: true });
 
 export const StoreFiltersSchema = createFilterSchemaFromBase(StoreSchema);

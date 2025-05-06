@@ -8,9 +8,10 @@ import {
   CreateStoreSchema,
   StoreFiltersSchema,
   StoreSchema,
-  UpdateStoreParamsSchema,
+  UpdateOrDeleteStoreParamsSchema,
   UpdateStoreSchema,
 } from "../../../infrastructure/validators/storesValidators";
+import { z } from "zod";
 
 const STORE_CONTROLLER_TAG = ["Stores"];
 
@@ -25,7 +26,7 @@ export const storesRegistry: RouteConfig[] = [
       query: StoreFiltersSchema,
     },
     responses: {
-      201: {
+      200: {
         description: "Stores obtenidos exitosamente",
         content: {
           "application/json": {
@@ -91,7 +92,7 @@ export const storesRegistry: RouteConfig[] = [
           },
         },
       },
-      params: UpdateStoreParamsSchema,
+      params: UpdateOrDeleteStoreParamsSchema,
     },
     responses: {
       200: {
@@ -104,6 +105,34 @@ export const storesRegistry: RouteConfig[] = [
       },
       400: {
         description: "Error de validación",
+        content: {
+          "application/json": {
+            schema: errorApiSchema,
+          },
+        },
+      },
+    },
+  },
+  {
+    method: "delete",
+    path: `/api/v1/stores/{id}`,
+    tags: STORE_CONTROLLER_TAG,
+    summary: "Elimina un store",
+    security: [{ bearerAuth: [] }],
+    request: {
+      params: UpdateOrDeleteStoreParamsSchema,
+    },
+    responses: {
+      204: {
+        description: "Store eliminado exitosamente",
+        content: {
+          "application/json": {
+            schema: makeApiResponseSchema(z.tuple([])),
+          },
+        },
+      },
+      500: {
+        description: "No encontramos al store requerido",
         content: {
           "application/json": {
             schema: errorApiSchema,

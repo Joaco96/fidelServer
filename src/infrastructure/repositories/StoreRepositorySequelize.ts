@@ -52,6 +52,18 @@ export class StoreRepositorySequelize implements StoreRepository {
     }
   }
 
+  async delete(
+    id: string,
+    tx: Transaction
+  ): Promise<void> {
+    try {
+      await StoresModel.destroy({ where: { id }, transaction: tx });
+    } catch (error) {
+      console.error("Error al eliminar el store", error);
+      throw new Error("No se pudo eliminar el store");
+    }
+  }
+
   async findAll(
     transaction?: Transaction,
     filters: Partial<Stores> = {}

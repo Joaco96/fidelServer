@@ -30,7 +30,9 @@ export class RewardRepositorySequelize implements RewardRepository {
         transaction,
       });
 
-      return foundRewardByKey.length ? foundRewardByKey.map((fr) => RewardMapper.toDomain(fr)) : [];
+      return foundRewardByKey.length
+        ? foundRewardByKey.map((fr) => RewardMapper.toDomain(fr))
+        : [];
     } catch (error) {
       console.error("Error al buscar el beneficio:", error);
       throw new Error("No se pudo encontrar el beneficio");
@@ -43,12 +45,25 @@ export class RewardRepositorySequelize implements RewardRepository {
     tx: Transaction
   ): Promise<Rewards> {
     try {
-      const updatedData  = await RewardsModel.update(data, { where: { id }, transaction: tx, returning: true });
+      const updatedData = await RewardsModel.update(data, {
+        where: { id },
+        transaction: tx,
+        returning: true,
+      });
 
       return RewardMapper.toDomain(updatedData[1][0]);
     } catch (error) {
       console.error("Error al actualizar el beneficio", error);
       throw new Error("No se pudo actualizar el beneficio");
+    }
+  }
+
+  async delete(id: string, tx: Transaction): Promise<void> {
+    try {
+      await RewardsModel.destroy({ where: { id }, transaction: tx });
+    } catch (error) {
+      console.error("Error al eliminar el beneficio", error);
+      throw new Error("No se pudo eliminar el beneficio");
     }
   }
 
@@ -61,7 +76,7 @@ export class RewardRepositorySequelize implements RewardRepository {
         where: filters,
         transaction,
       });
-  
+
       return foundRewards.length
         ? foundRewards.map((fr) => RewardMapper.toDomain(fr))
         : [];

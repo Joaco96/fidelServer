@@ -6,11 +6,13 @@ import {
 import {
   CreateRewardResponseSchema,
   CreateRewardSchema,
+  DeleteRewardParamsSchema,
   RewardFiltersSchema,
   RewardSchema,
   UpdateRewardParamsSchema,
   UpdateRewardSchema,
 } from "../../../infrastructure/validators/rewardsValidators";
+import { z } from "zod";
 
 const REWARD_CONTROLLER_TAG = ["Rewards"];
 
@@ -104,6 +106,34 @@ export const rewardsRegistry: RouteConfig[] = [
       },
       400: {
         description: "Error de validación",
+        content: {
+          "application/json": {
+            schema: errorApiSchema,
+          },
+        },
+      },
+    },
+  },
+  {
+    method: "delete",
+    path: `/api/v1/rewards/{id}`,
+    tags: REWARD_CONTROLLER_TAG,
+    summary: "Elimina un beneficio",
+    security: [{ bearerAuth: [] }],
+    request: {
+      params: DeleteRewardParamsSchema,
+    },
+    responses: {
+      204: {
+        description: "Beneficio eliminado exitosamente",
+        content: {
+          "application/json": {
+            schema: makeApiResponseSchema(z.tuple([])),
+          },
+        },
+      },
+      500: {
+        description: "No encontramos al beneficio requerido",
         content: {
           "application/json": {
             schema: errorApiSchema,

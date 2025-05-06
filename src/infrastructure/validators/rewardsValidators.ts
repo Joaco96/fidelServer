@@ -30,5 +30,6 @@ export const UpdateRewardSchema = RewardSchema.omit({
   updated_at: true
 }).partial();
 export const UpdateRewardParamsSchema = RewardSchema.pick({ id: true });
+export const DeleteRewardParamsSchema = RewardSchema.pick({ id: true });
 
 export const RewardFiltersSchema = createFilterSchemaFromBase(RewardSchema);
