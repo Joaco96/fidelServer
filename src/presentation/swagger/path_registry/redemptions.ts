@@ -3,11 +3,44 @@ import {
   errorApiSchema,
   makeApiResponseSchema,
 } from "../schemas/apiResponseSchema";
-import { CreateRedemptionSchema, CreateRedemtionResponseSchema, RedemptionFiltersSchema, RedemptionSchema } from "../../../infrastructure/validators/redemptionsValidators";
+import {
+  CreateRedemptionSchema,
+  CreateRedemtionResponseSchema,
+  RedemptionFiltersSchema,
+  RedemptionSchema,
+} from "../../../infrastructure/validators/redemptionsValidators";
 
 const REDEMPTIONS_CONTROLLER_TAG = ["Redemptions"];
 
 export const redemptionsRegistry: RouteConfig[] = [
+  {
+    method: "get",
+    path: `/api/v1/redemptions`,
+    tags: REDEMPTIONS_CONTROLLER_TAG,
+    summary: "Obtiene lista de canjes filtrados",
+    security: [{ bearerAuth: [] }], // Para que se vea el candado en swagger y poder autenticar
+    request: {
+      query: RedemptionFiltersSchema,
+    },
+    responses: {
+      201: {
+        description: "Canjes obtenidos exitosamente",
+        content: {
+          "application/json": {
+            schema: makeApiResponseSchema(RedemptionSchema),
+          },
+        },
+      },
+      400: {
+        description: "Error interno del servidor",
+        content: {
+          "application/json": {
+            schema: errorApiSchema,
+          },
+        },
+      },
+    },
+  },
   {
     method: "post",
     path: `/api/v1/redemptions`,
@@ -42,32 +75,4 @@ export const redemptionsRegistry: RouteConfig[] = [
       },
     },
   },
-  {
-      method: "get",
-      path: `/api/v1/redemptions`,
-      tags: REDEMPTIONS_CONTROLLER_TAG,
-      summary: "Obtiene lista de canjes filtrados",
-      security: [{ bearerAuth: [] }], // Para que se vea el candado en swagger y poder autenticar
-      request: {
-        query: RedemptionFiltersSchema,
-      },
-      responses: {
-        201: {
-          description: "Canjes obtenidos exitosamente",
-          content: {
-            "application/json": {
-              schema: makeApiResponseSchema(RedemptionSchema),
-            },
-          },
-        },
-        400: {
-          description: "Error interno del servidor",
-          content: {
-            "application/json": {
-              schema: errorApiSchema,
-            },
-          },
-        },
-      },
-    },
 ];

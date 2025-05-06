@@ -5,6 +5,7 @@ import pointRoutes from "./pointRoutes";
 import rewardRoutes from "./rewardRoutes";
 import stockRoutes from "./stockRoutes";
 import redemptionRoutes from "./redemptionRoutes";
+import storeRoutes from "./storeRoutes";
 
 const router = Router();
 
@@ -15,5 +16,6 @@ router.use("/points", pointRoutes);
 router.use("/rewards", rewardRoutes);
 router.use("/stock", stockRoutes);
 router.use("/redemptions", redemptionRoutes);
+router.use("/stores", storeRoutes);
 
 export default router;

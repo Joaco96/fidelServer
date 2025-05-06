@@ -22,12 +22,16 @@ export const UserSchema = z.object({
     .min(8, "La contraseña debe tener al menos 8 caracteres")
     .openapi({ type: "string" }),
   points_balance: z.number().openapi({ example: 0 }),
+  created_at: z.date().openapi({ example: "2025-04-15T21:16:10.095Z" }),
+  updated_at: z.date().openapi({ example: "2025-04-15T21:16:10.095Z" }),
 });
 
 export const CreateUserSchema = UserSchema.omit({
   id: true,
   role_id: true,
   points_balance: true,
+  created_at: true, 
+  updated_at: true
 });
 export const CreateUserResponseSchema = z.object({
   message: z.string(),
@@ -39,6 +43,8 @@ export const LoginUserSchema = UserSchema.omit({
   role_id: true,
   points_balance: true,
   name: true,
+  created_at: true, 
+  updated_at: true
 });
 export const LoginUserResponseSchema = z.object({
   message: z.string(),

@@ -19,9 +19,11 @@ export const StockSchema = z.object({
       message: "El número no puede ser 0",
     })
     .openapi({ example: 0 }),
+  created_at: z.date().openapi({ example: "2025-04-15T21:16:10.095Z" }),
+  updated_at: z.date().openapi({ example: "2025-04-15T21:16:10.095Z" }),
 });
 
-export const CreateStockSchema = StockSchema.omit({ id: true });
+export const CreateStockSchema = StockSchema.omit({ id: true, created_at: true, updated_at: true });
 export const CreateStockResponseSchema = z.object({
   message: z.string(),
   id: StockSchema.shape.id,

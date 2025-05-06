@@ -7,6 +7,7 @@ import { pointRegistry } from "./path_registry/points";
 import { rewardsRegistry } from "./path_registry/rewards";
 import { stockRegistry } from "./path_registry/stocks";
 import { redemptionsRegistry } from "./path_registry/redemptions";
+import { storesRegistry } from "./path_registry/stores";
 
 
 export function generateOpenApiDocs() {
@@ -25,6 +26,7 @@ export function generateOpenApiDocs() {
   rewardsRegistry.forEach(r => registry.registerPath(r));
   stockRegistry.forEach(r => registry.registerPath(r));
   redemptionsRegistry.forEach(r => registry.registerPath(r));
+  storesRegistry.forEach(r => registry.registerPath(r));
   
   // Registrar esquemas
   registry.register("ApiSuccessResponse", makeApiResponseSchema(z.union([z.object({}), z.array(z.object({}))])));
