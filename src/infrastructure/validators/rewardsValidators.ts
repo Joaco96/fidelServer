@@ -25,6 +25,7 @@ export const CreateRewardResponseSchema = z.object({
 
 export const UpdateRewardSchema = RewardSchema.omit({
   id: true,
+  stock_balance: true,
   created_at: true, 
   updated_at: true
 }).partial();
