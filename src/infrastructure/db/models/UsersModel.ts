@@ -7,6 +7,7 @@ export class UsersModel extends Model {
   declare id: UUID;
   declare role_id: RoleIds;
   declare name: string;
+  declare dni: string;
   declare email: string;
   declare password: string;
   declare points_balance: number;
@@ -26,6 +27,10 @@ UsersModel.init(
       allowNull: false,
     },
     name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    dni: {
       type: DataTypes.STRING,
       allowNull: false,
     },

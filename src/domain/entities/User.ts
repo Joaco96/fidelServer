@@ -10,6 +10,7 @@ export class User {
 
   constructor(
     public name: string,
+    public dni: string,
     public email: string,
     public password: string,
     public createdAt?: Date,

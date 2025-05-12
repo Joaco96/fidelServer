@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { extendZodWithOpenApi } from "@asteasolutions/zod-to-openapi";
+import { createFilterSchemaFromBase } from "../../utils/filters/createFilterSchemaFromBase";
 
 extendZodWithOpenApi(z);
 
@@ -9,6 +10,10 @@ export const UserSchema = z.object({
     .uuid()
     .openapi({ example: "550e8400-e29b-41d4-a716-446655440000" }),
   role_id: z.number().openapi({ example: 0 }),
+  dni: z
+    .string()
+    .min(1, "El nombre no puede estar vacío")
+    .openapi({ type: "string" }),
   name: z
     .string()
     .min(1, "El nombre no puede estar vacío")
@@ -42,6 +47,7 @@ export const LoginUserSchema = UserSchema.omit({
   id: true,
   role_id: true,
   points_balance: true,
+  dni: true,
   name: true,
   created_at: true, 
   updated_at: true
@@ -54,3 +60,7 @@ export const LoginUserResponseSchema = z.object({
 export const GetUserSchema = UserSchema.omit({ password: true });
 export const GetUsersListSchema = z.array(GetUserSchema);
 export const GetUserParamsSchema = z.object({ id: UserSchema.shape.id });
+
+export const DeleteUserParamsSchema = UserSchema.pick({ id: true });
+
+export const UsersFiltersSchema = createFilterSchemaFromBase(GetUserSchema);

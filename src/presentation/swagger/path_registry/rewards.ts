@@ -27,7 +27,7 @@ export const rewardsRegistry: RouteConfig[] = [
       query: RewardFiltersSchema,
     },
     responses: {
-      201: {
+      200: {
         description: "Beneficios obtenidos exitosamente",
         content: {
           "application/json": {

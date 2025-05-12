@@ -19,7 +19,7 @@ export class CreateUser<T> {
 
       const hashedPassword = await hashPassword(user.password);
 
-      const newUser = new User(user.name, user.email, hashedPassword);
+      const newUser = new User(user.name, user.dni, user.email, hashedPassword);
 
       return await this.userRepository.save(newUser, transaction);
     });

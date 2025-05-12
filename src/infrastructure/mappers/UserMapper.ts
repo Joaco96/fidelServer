@@ -8,6 +8,7 @@ export class UserMapper {
       id,
       role_id,
       name,
+      dni,
       email,
       password,
       points_balance,
@@ -18,6 +19,7 @@ export class UserMapper {
       id,
       role_id,
       name,
+      dni,
       email,
       password,
       points_balance,
@@ -30,6 +32,7 @@ export class UserMapper {
     return {
       id: user.id,
       role_id: user.role_id,
+      dni: user.dni,
       name: user.name,
       email: user.email,
       password: user.password,

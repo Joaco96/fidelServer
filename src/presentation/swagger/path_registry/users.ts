@@ -1,10 +1,50 @@
 import { RouteConfig } from "@asteasolutions/zod-to-openapi";
-import { CreateUserSchema, LoginUserSchema, CreateUserResponseSchema, LoginUserResponseSchema } from "../../../infrastructure/validators/userValidators";
-import { errorApiSchema, makeApiResponseSchema } from "../schemas/apiResponseSchema";
+import {
+  CreateUserSchema,
+  LoginUserSchema,
+  CreateUserResponseSchema,
+  LoginUserResponseSchema,
+  UsersFiltersSchema,
+  GetUserSchema,
+  DeleteUserParamsSchema,
+} from "../../../infrastructure/validators/userValidators";
+import {
+  errorApiSchema,
+  makeApiResponseSchema,
+} from "../schemas/apiResponseSchema";
+import { z } from "zod";
 
 const USER_CONTROLLER_TAG = ["Users"];
 
 export const userRegistry: RouteConfig[] = [
+  {
+    method: "get",
+    path: `/api/v1/users`,
+    tags: USER_CONTROLLER_TAG,
+    summary: "Obtiene lista de usuarios filtrados",
+    security: [{ bearerAuth: [] }], // Para que se vea el candado en swagger y poder autenticar
+    request: {
+      query: UsersFiltersSchema,
+    },
+    responses: {
+      200: {
+        description: "Usuarios obtenidos exitosamente",
+        content: {
+          "application/json": {
+            schema: makeApiResponseSchema(GetUserSchema),
+          },
+        },
+      },
+      400: {
+        description: "Error interno del servidor",
+        content: {
+          "application/json": {
+            schema: errorApiSchema,
+          },
+        },
+      },
+    },
+  },
   {
     method: "post",
     path: `/api/v1/users`,
@@ -24,15 +64,15 @@ export const userRegistry: RouteConfig[] = [
       201: {
         description: "Usuario creado exitosamente",
         content: {
-          'application/json': {
+          "application/json": {
             schema: makeApiResponseSchema(CreateUserResponseSchema),
           },
         },
       },
       400: {
-        description: 'Error de validación',
+        description: "Error de validación",
         content: {
-          'application/json': {
+          "application/json": {
             schema: errorApiSchema,
           },
         },
@@ -57,15 +97,43 @@ export const userRegistry: RouteConfig[] = [
       200: {
         description: "Usuario logueado exitosamente",
         content: {
-          'application/json': {
+          "application/json": {
             schema: makeApiResponseSchema(LoginUserResponseSchema),
           },
         },
       },
       400: {
-        description: 'Error de validación',
+        description: "Error de validación",
         content: {
-          'application/json': {
+          "application/json": {
+            schema: errorApiSchema,
+          },
+        },
+      },
+    },
+  },
+  {
+    method: "delete",
+    path: `/api/v1/users/{id}`,
+    tags: USER_CONTROLLER_TAG,
+    summary: "Elimina un usuario",
+    security: [{ bearerAuth: [] }],
+    request: {
+      params: DeleteUserParamsSchema,
+    },
+    responses: {
+      204: {
+        description: "Usuario eliminado exitosamente",
+        content: {
+          "application/json": {
+            schema: makeApiResponseSchema(z.tuple([])),
+          },
+        },
+      },
+      500: {
+        description: "No encontramos al usuario requerido",
+        content: {
+          "application/json": {
             schema: errorApiSchema,
           },
         },
