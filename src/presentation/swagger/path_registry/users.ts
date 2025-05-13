@@ -7,6 +7,9 @@ import {
   UsersFiltersSchema,
   GetUserSchema,
   DeleteUserParamsSchema,
+  UpdateUserSchema,
+  UpdateUserParamsSchema,
+  UpdateUserRoleSchema,
 } from "../../../infrastructure/validators/userValidators";
 import {
   errorApiSchema,
@@ -99,6 +102,76 @@ export const userRegistry: RouteConfig[] = [
         content: {
           "application/json": {
             schema: makeApiResponseSchema(LoginUserResponseSchema),
+          },
+        },
+      },
+      400: {
+        description: "Error de validación",
+        content: {
+          "application/json": {
+            schema: errorApiSchema,
+          },
+        },
+      },
+    },
+  },
+  {
+    method: "patch",
+    path: `/api/v1/users/{id}`,
+    tags: USER_CONTROLLER_TAG,
+    summary: "Actualiza la información de un usuario",
+    security: [{ bearerAuth: [] }],
+    request: {
+      body: {
+        content: {
+          "application/json": {
+            schema: UpdateUserSchema,
+          },
+        },
+      },
+      params: UpdateUserParamsSchema,
+    },
+    responses: {
+      200: {
+        description: "Usuario actualizado exitosamente",
+        content: {
+          "application/json": {
+            schema: makeApiResponseSchema(GetUserSchema),
+          },
+        },
+      },
+      400: {
+        description: "Error de validación",
+        content: {
+          "application/json": {
+            schema: errorApiSchema,
+          },
+        },
+      },
+    },
+  },
+  {
+    method: "patch",
+    path: `/api/v1/users/assign-role/{id}`,
+    tags: USER_CONTROLLER_TAG,
+    summary: "Actualiza el rol de un usuario",
+    security: [{ bearerAuth: [] }],
+    request: {
+      body: {
+        content: {
+          "application/json": {
+            schema: UpdateUserRoleSchema,
+          },
+        },
+      },
+      params: UpdateUserParamsSchema,
+    },
+    responses: {
+      200: {
+        description: "Rol de usuario actualizado exitosamente",
+        content: {
+          "application/json": {
+            schema: makeApiResponseSchema(GetUserSchema),
           },
         },
       },

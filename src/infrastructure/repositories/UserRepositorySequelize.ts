@@ -71,4 +71,26 @@ export class UserRepositorySequelize implements UserRepository {
       throw new Error("No se pudieron encontrar los usuarios");
     }
   }
+
+  async update(
+    id: string,
+    data: Partial<User>,
+    tx: Transaction
+  ): Promise<User> {
+    try {
+      const [, [updatedData]] = await UsersModel.update(data, {
+        where: { id },
+        transaction: tx,
+        returning: true,
+      });
+      
+      const safeUpdatedData = updatedData.get({plain: true});
+      delete safeUpdatedData.password;
+
+      return UserMapper.toDomain(updatedData);
+    } catch (error) {
+      console.error("Error al actualizar el usuario", error);
+      throw new Error("No se pudo actualizar el usuario");
+    }
+  }
 }

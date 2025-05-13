@@ -63,4 +63,14 @@ export const GetUserParamsSchema = z.object({ id: UserSchema.shape.id });
 
 export const DeleteUserParamsSchema = UserSchema.pick({ id: true });
 
+export const UpdateUserSchema = UserSchema.omit({
+  id: true,
+  role_id: true,
+  points_balance: true,
+  created_at: true, 
+  updated_at: true
+}).partial();
+export const UpdateUserParamsSchema = UserSchema.pick({ id: true });
+export const UpdateUserRoleSchema = UserSchema.pick({ role_id: true });
+
 export const UsersFiltersSchema = createFilterSchemaFromBase(GetUserSchema);

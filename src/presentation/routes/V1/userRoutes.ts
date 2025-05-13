@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { UserController } from "../../controllers/UserController";
 import { validateSchema } from "../../../infrastructure/middlewares/validateSchema";
-import { CreateUserSchema, DeleteUserParamsSchema, LoginUserSchema, UsersFiltersSchema } from "../../../infrastructure/validators/userValidators";
+import { CreateUserSchema, DeleteUserParamsSchema, LoginUserSchema, UpdateUserParamsSchema, UpdateUserRoleSchema, UpdateUserSchema, UsersFiltersSchema } from "../../../infrastructure/validators/userValidators";
 import { asyncHandler } from "../../../utils/asyncHandler";
 import { authMiddleware } from "../../../infrastructure/middlewares/authMiddleware";
 import { authorizedRole } from "../../../infrastructure/middlewares/authorizedRole";
@@ -32,9 +32,26 @@ router.post(
 router.delete(
   "/:id", 
   authMiddleware,
-  authorizedRole(RoleIds.ADMIN),
   validateSchema(DeleteUserParamsSchema, "params"), 
   asyncHandler(UserController.delete)
 );
+
+router.patch(
+  "/:id", 
+  authMiddleware, 
+  validateSchema(UpdateUserParamsSchema, "params"), 
+  validateSchema(UpdateUserSchema), 
+  asyncHandler(UserController.update)
+);
+
+router.patch(
+  "/assign-role/:id", 
+  authMiddleware, 
+  authorizedRole(RoleIds.ADMIN),
+  validateSchema(UpdateUserParamsSchema, "params"), 
+  validateSchema(UpdateUserRoleSchema), 
+  asyncHandler(UserController.updateRole)
+);
+
 
 export default router;
