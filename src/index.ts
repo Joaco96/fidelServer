@@ -11,6 +11,7 @@ import "./types/index"
 import logger, { responseTimeHeader } from "./infrastructure/logger";
 import { seedStores } from "./infrastructure/seeders/seedStores";
 import cors from "cors";
+import { seedDefaultAdminUser } from "./infrastructure/seeders/seedDefaultAdminUser";
 
 const app = express();
 app.use(responseTimeHeader);
@@ -29,6 +30,7 @@ const bootstrapServer = async () => {
     .then(async () => {
       await seedRoles();
       await seedStores();
+      await seedDefaultAdminUser();
     })
     .catch((err: any) =>
       console.log(`❌ Error conectando a PostgreSQL: ${err}`)

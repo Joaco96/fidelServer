@@ -4,6 +4,8 @@ import { asyncHandler } from "../../../utils/asyncHandler";
 import { authMiddleware } from "../../../infrastructure/middlewares/authMiddleware";
 import { RewardController } from "../../controllers/RewardController";
 import { CreateRewardSchema, DeleteRewardParamsSchema, RewardFiltersSchema, UpdateRewardParamsSchema, UpdateRewardSchema } from "../../../infrastructure/validators/rewardsValidators";
+import { authorizedRole } from "../../../infrastructure/middlewares/authorizedRole";
+import { RoleIds } from "../../../domain/entities/Role";
 
 const router = Router();
 
@@ -17,6 +19,7 @@ router.get(
 router.post(
   "/", 
   authMiddleware, 
+  authorizedRole(RoleIds.ADMIN),
   validateSchema(CreateRewardSchema), 
   asyncHandler(RewardController.create)
 );
@@ -24,6 +27,7 @@ router.post(
 router.patch(
   "/:id", 
   authMiddleware, 
+  authorizedRole(RoleIds.ADMIN),
   validateSchema(UpdateRewardParamsSchema, "params"), 
   validateSchema(UpdateRewardSchema), 
   asyncHandler(RewardController.update)
@@ -32,6 +36,7 @@ router.patch(
 router.delete(
   "/:id", 
   authMiddleware, 
+  authorizedRole(RoleIds.ADMIN),
   validateSchema(DeleteRewardParamsSchema, "params"), 
   asyncHandler(RewardController.delete)
 );

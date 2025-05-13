@@ -5,7 +5,7 @@ const SECRET = authConfig.jwt_secret!;
 
 export interface CustomJwtPayload extends JwtPayload {
   id: string;
-  role_id: number;
+  role: number;
   name: string;
   email: string;
 }
