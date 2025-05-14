@@ -17,6 +17,8 @@ export const RewardSchema = z.object({
   updated_at: z.date().openapi({ example: "2025-04-15T21:16:10.095Z" }),
 });
 
+export const GetRewardListSchema = z.array(RewardSchema);
+
 export const CreateRewardSchema = RewardSchema.omit({ id: true, created_at: true, updated_at: true });
 export const CreateRewardResponseSchema = z.object({
   message: z.string(),

@@ -6,6 +6,7 @@ import {
 import {
   CreateRedemptionSchema,
   CreateRedemtionResponseSchema,
+  GetRedemptionSchema,
   RedemptionFiltersSchema,
   RedemptionSchema,
 } from "../../../infrastructure/validators/redemptionsValidators";
@@ -27,7 +28,7 @@ export const redemptionsRegistry: RouteConfig[] = [
         description: "Canjes obtenidos exitosamente",
         content: {
           "application/json": {
-            schema: makeApiResponseSchema(RedemptionSchema),
+            schema: makeApiResponseSchema(GetRedemptionSchema),
           },
         },
       },

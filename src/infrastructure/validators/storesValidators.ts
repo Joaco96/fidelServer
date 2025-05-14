@@ -16,6 +16,8 @@ export const StoreSchema = z.object({
   updated_at: z.date().openapi({ example: "2025-04-15T21:16:10.095Z" }),
 });
 
+export const GetStoreListSchema = z.array(StoreSchema)
+
 export const CreateStoreSchema = StoreSchema.omit({ id: true, created_at: true, updated_at: true });
 export const CreateStoreResponseSchema = z.object({
   message: z.string(),

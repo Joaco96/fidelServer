@@ -6,6 +6,7 @@ import {
 import {
   CreateStoreResponseSchema,
   CreateStoreSchema,
+  GetStoreListSchema,
   StoreFiltersSchema,
   StoreSchema,
   UpdateOrDeleteStoreParamsSchema,
@@ -30,7 +31,7 @@ export const storesRegistry: RouteConfig[] = [
         description: "Stores obtenidos exitosamente",
         content: {
           "application/json": {
-            schema: makeApiResponseSchema(StoreSchema),
+            schema: makeApiResponseSchema(GetStoreListSchema),
           },
         },
       },

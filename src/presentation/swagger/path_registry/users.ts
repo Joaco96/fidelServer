@@ -10,6 +10,7 @@ import {
   UpdateUserSchema,
   UpdateUserParamsSchema,
   UpdateUserRoleSchema,
+  GetUsersListSchema,
 } from "../../../infrastructure/validators/userValidators";
 import {
   errorApiSchema,
@@ -34,7 +35,7 @@ export const userRegistry: RouteConfig[] = [
         description: "Usuarios obtenidos exitosamente",
         content: {
           "application/json": {
-            schema: makeApiResponseSchema(GetUserSchema),
+            schema: makeApiResponseSchema(GetUsersListSchema),
           },
         },
       },

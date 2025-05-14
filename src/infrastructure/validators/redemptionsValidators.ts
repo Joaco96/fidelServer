@@ -2,6 +2,7 @@ import { z } from "zod";
 import { extendZodWithOpenApi } from "@asteasolutions/zod-to-openapi";
 import { RewardSchema } from "./rewardsValidators";
 import { createFilterSchemaFromBase } from "../../utils/filters/createFilterSchemaFromBase";
+import { GetUserSchema } from "./userValidators";
 
 extendZodWithOpenApi(z);
 
@@ -24,9 +25,7 @@ export const RedemptionSchema = z.object({
   is_delivered: z.string().openapi({ example: "false" }),
 });
 
-export const GetRedemptionSchema = z.array(RedemptionSchema.extend({
-  reward: RewardSchema
-}));
+export const GetRedemptionSchema = z.array(RedemptionSchema);
 
 export const CreateRedemptionSchema = RedemptionSchema.omit({ id: true, created_at: true, updated_at: true });
 export const CreateRedemtionResponseSchema = z.object({

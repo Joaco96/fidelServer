@@ -7,6 +7,7 @@ import {
   CreateRewardResponseSchema,
   CreateRewardSchema,
   DeleteRewardParamsSchema,
+  GetRewardListSchema,
   RewardFiltersSchema,
   RewardSchema,
   UpdateRewardParamsSchema,
@@ -31,7 +32,7 @@ export const rewardsRegistry: RouteConfig[] = [
         description: "Beneficios obtenidos exitosamente",
         content: {
           "application/json": {
-            schema: makeApiResponseSchema(RewardSchema),
+            schema: makeApiResponseSchema(GetRewardListSchema),
           },
         },
       },
