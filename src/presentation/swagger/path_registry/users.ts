@@ -11,6 +11,8 @@ import {
   UpdateUserParamsSchema,
   UpdateUserRoleSchema,
   GetUsersListSchema,
+  GetUserPointsResponseSchema,
+  GetUserPointsParamsSchema,
 } from "../../../infrastructure/validators/userValidators";
 import {
   errorApiSchema,
@@ -39,6 +41,34 @@ export const userRegistry: RouteConfig[] = [
           },
         },
       },
+      400: {
+        description: "Error interno del servidor",
+        content: {
+          "application/json": {
+            schema: errorApiSchema,
+          },
+        },
+      },
+    },
+  },
+  {
+    method: "get",
+    path: `/api/v1/users/points/{id}`,
+    tags: USER_CONTROLLER_TAG,
+    summary: "Obtiene balance de puntos del usuario",
+    security: [{ bearerAuth: [] }], // Para que se vea el candado en swagger y poder autenticar
+    request: {
+      params: GetUserPointsParamsSchema,
+    },
+    responses: {
+      200: {
+        description: "Puntos de usuario obtenidos exitosamente",
+        content: {
+          "application/json": {
+            schema: makeApiResponseSchema(GetUserPointsResponseSchema),
+          },
+        },
+      },      
       400: {
         description: "Error interno del servidor",
         content: {

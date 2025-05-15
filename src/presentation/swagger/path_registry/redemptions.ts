@@ -8,7 +8,6 @@ import {
   CreateRedemtionResponseSchema,
   GetRedemptionSchema,
   RedemptionFiltersSchema,
-  RedemptionSchema,
 } from "../../../infrastructure/validators/redemptionsValidators";
 
 const REDEMPTIONS_CONTROLLER_TAG = ["Redemptions"];

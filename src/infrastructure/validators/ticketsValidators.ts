@@ -1,5 +1,7 @@
 import { z } from "zod";
 import { extendZodWithOpenApi } from "@asteasolutions/zod-to-openapi";
+import { createFilterSchemaFromBase } from "../../utils/filters/createFilterSchemaFromBase";
+import { StoreSchema } from "./storesValidators";
 
 extendZodWithOpenApi(z);
 
@@ -19,8 +21,17 @@ export const TicketSchema = z.object({
   updated_at: z.date().openapi({ example: "2025-04-15T21:16:10.095Z" }),
 });
 
-export const CreateTicketSchema = TicketSchema.omit({ points_earned: true, created_at: true, updated_at: true });
+export const CreateTicketSchema = TicketSchema.omit({
+  points_earned: true,
+  created_at: true,
+  updated_at: true,
+});
 export const CreateTicketResponseSchema = z.object({
   message: z.string(),
   points_earned: TicketSchema.shape.points_earned,
 });
+
+export const GetFilteredTicketsSchema = createFilterSchemaFromBase(TicketSchema);
+export const GetTicketsResponseSchema =  z.array(
+  TicketSchema.extend({ store: StoreSchema })
+);

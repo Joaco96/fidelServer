@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(responseFormatter);
 app.use(cors(serverConfig.cors));
 app.use("/api/v1", routesV1);
-app.use("/docs", swaggerUi.serve, swaggerUi.setup(generateOpenApiDocs()));
+app.use("/docs/v1", swaggerUi.serve, swaggerUi.setup(generateOpenApiDocs()));
 app.use(errorHandler);
 
 const PORT = serverConfig.port || 3000;

@@ -74,3 +74,6 @@ export const UpdateUserParamsSchema = UserSchema.pick({ id: true });
 export const UpdateUserRoleSchema = UserSchema.pick({ role_id: true });
 
 export const UsersFiltersSchema = createFilterSchemaFromBase(GetUserSchema);
+
+export const GetUserPointsParamsSchema = UserSchema.pick({ id: true });
+export const GetUserPointsResponseSchema = UserSchema.pick({ points_balance: true });

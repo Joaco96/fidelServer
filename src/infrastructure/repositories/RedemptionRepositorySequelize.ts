@@ -2,7 +2,12 @@ import { Transaction } from "sequelize";
 import { Redemptions } from "../../domain/entities/Redemptions";
 import { RedemptionRepository } from "../../domain/repositories/redemptionRepository";
 import { RedemptionsMapper } from "../mappers/RedemptionsMapper";
-import { PointsModel, RedemptionsModel, StocksModel } from "../db/models";
+import {
+  PointsModel,
+  RedemptionsModel,
+  RewardsModel,
+  StocksModel,
+} from "../db/models";
 import { parseBoolean } from "../../utils/parseBoolean";
 
 export class RedemptionRepositorySequelize implements RedemptionRepository {
@@ -64,16 +69,18 @@ export class RedemptionRepositorySequelize implements RedemptionRepository {
           as: "stock",
           where: { reward_id: filters.reward_id },
           required: true, // Realiza un INNER JOIN
+          include: [{ model: RewardsModel, as: "reward" }],
         });
       } else {
         includeOptions.push({
           model: StocksModel,
           as: "stock",
+          include: [{ model: RewardsModel, as: "reward" }],
         });
       }
 
       if (filters.is_delivered !== undefined) {
-        const parseFilter = parseBoolean(`${filters.is_delivered}`)
+        const parseFilter = parseBoolean(`${filters.is_delivered}`);
         whereClause.is_delivered = parseFilter;
       }
 
@@ -86,7 +93,7 @@ export class RedemptionRepositorySequelize implements RedemptionRepository {
         include: includeOptions,
         transaction,
       });
-      
+
       return foundRedemptions.length
         ? foundRedemptions.map((fr) => RedemptionsMapper.toDomain(fr))
         : [];

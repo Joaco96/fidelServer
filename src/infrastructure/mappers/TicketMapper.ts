@@ -1,26 +1,21 @@
 import { Tickets } from "../../domain/entities/Tickets";
 import { isMapperClass } from "../../domain/mapper";
-import { TicketsModel } from "../db/models";
+import { StoresModel, TicketsModel } from "../db/models";
 
 export class TicketMapper {
   static toDomain(ticketsModel: TicketsModel): Tickets {
-    const {
-      id,
-      user_id,
-      store_id,
-      amount_spent,
-      points_earned,
-      createdAt,
-      updatedAt,
-    } = ticketsModel.get() as TicketsModel;
+    const store = ticketsModel.get("store") as StoresModel;
+    const ticket = ticketsModel.get() as TicketsModel;
+
     return {
-      id,
-      user_id,
-      store_id,
-      amount_spent,
-      points_earned,
-      createdAt,
-      updatedAt,
+      id: ticket.id,
+      user_id: ticket.user_id,
+      store_id: ticket.store_id,
+      amount_spent: ticket.amount_spent,
+      points_earned: ticket.points_earned,
+      createdAt: ticket.createdAt,
+      updatedAt: ticket.updatedAt,
+      store: store ? store : undefined,
     } as Tickets;
   }
 

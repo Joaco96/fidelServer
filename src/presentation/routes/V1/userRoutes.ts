@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { UserController } from "../../controllers/UserController";
 import { validateSchema } from "../../../infrastructure/middlewares/validateSchema";
-import { CreateUserSchema, DeleteUserParamsSchema, LoginUserSchema, UpdateUserParamsSchema, UpdateUserRoleSchema, UpdateUserSchema, UsersFiltersSchema } from "../../../infrastructure/validators/userValidators";
+import { CreateUserSchema, DeleteUserParamsSchema, GetUserPointsParamsSchema, LoginUserSchema, UpdateUserParamsSchema, UpdateUserRoleSchema, UpdateUserSchema, UsersFiltersSchema } from "../../../infrastructure/validators/userValidators";
 import { asyncHandler } from "../../../utils/asyncHandler";
 import { authMiddleware } from "../../../infrastructure/middlewares/authMiddleware";
 import { authorizedRole } from "../../../infrastructure/middlewares/authorizedRole";
@@ -15,6 +15,13 @@ router.get(
   authorizedRole(RoleIds.ADMIN),
   validateSchema(UsersFiltersSchema, "query"), 
   asyncHandler(UserController.getAllUsers)
+);
+
+router.get(
+  "/points/:id",
+  authMiddleware,
+  validateSchema(GetUserPointsParamsSchema, "params"), 
+  asyncHandler(UserController.getUserPoints)
 );
 
 router.post(

@@ -9,7 +9,7 @@ const unitOfWork = new SequelizeUnitOfWork(sequelize);
 const getPointsHistory = new GetPointsHistory(pointRepository, unitOfWork);
 
 export class PointController {
-  static async getHistoryByUser(req: Request, res: Response) {
+  static async getPointsHistory(req: Request, res: Response) {
     const pointsHistory = await getPointsHistory.execute(req.query);
     res
       .status(200)

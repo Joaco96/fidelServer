@@ -1,7 +1,9 @@
 import { UUID } from "crypto";
+import { Stores } from "./Stores";
 
 export class Tickets {
   public points_earned: number;
+  public store?: Stores;
 
   constructor(
     public id: string,

@@ -2,7 +2,6 @@ import { z } from "zod";
 import { extendZodWithOpenApi } from "@asteasolutions/zod-to-openapi";
 import { RewardSchema } from "./rewardsValidators";
 import { createFilterSchemaFromBase } from "../../utils/filters/createFilterSchemaFromBase";
-import { GetUserSchema } from "./userValidators";
 
 extendZodWithOpenApi(z);
 
@@ -23,14 +22,27 @@ export const RedemptionSchema = z.object({
   created_at: z.date().openapi({ example: "2025-04-15T21:16:10.095Z" }),
   updated_at: z.date().openapi({ example: "2025-04-15T21:16:10.095Z" }),
   is_delivered: z.string().openapi({ example: "false" }),
+  qr_code: z
+    .string()
+    .uuid()
+    .openapi({ type: "string" }),
 });
 
-export const GetRedemptionSchema = z.array(RedemptionSchema);
+export const GetRedemptionSchema = z.array(
+  RedemptionSchema.extend({ reward: RewardSchema })
+);
 
-export const CreateRedemptionSchema = RedemptionSchema.omit({ id: true, created_at: true, updated_at: true });
+export const CreateRedemptionSchema = RedemptionSchema.omit({
+  id: true,
+  created_at: true,
+  updated_at: true,
+  is_delivered: true,
+});
 export const CreateRedemtionResponseSchema = z.object({
   message: z.string(),
   id: RedemptionSchema.shape.id,
 });
 
-export const RedemptionFiltersSchema = createFilterSchemaFromBase(RedemptionSchema.omit({quantity: true}));
+export const RedemptionFiltersSchema = createFilterSchemaFromBase(
+  RedemptionSchema.omit({ quantity: true, qr_code: true })
+);

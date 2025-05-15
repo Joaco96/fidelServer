@@ -8,7 +8,8 @@ export class PointRepositorySequelize implements PointRepository {
   async save(points: Points, transaction?: Transaction): Promise<Points> {
     try {
       const createdPoint = await PointsModel.create(
-        PointsMapper.toPersistence(points), { transaction }
+        PointsMapper.toPersistence(points),
+        { transaction }
       );
 
       return PointsMapper.toDomain(createdPoint);
@@ -20,14 +21,17 @@ export class PointRepositorySequelize implements PointRepository {
 
   async findAll(transaction?: Transaction, filters: Partial<Points> = {}): Promise<Array<Points>> {
     try {
-      const pointsHistory = await PointsModel.findAll({ 
+      const pointsHistory = await PointsModel.findAll({
         where: filters,
-        transaction 
+        transaction,
       });
 
-      return pointsHistory.map(ph => PointsMapper.toDomain(ph));
+      return pointsHistory.map((ph) => PointsMapper.toDomain(ph));
     } catch (error) {
-      console.error("Error al obtener la lista de movimientos de puntos:", error);
+      console.error(
+        "Error al obtener la lista de movimientos de puntos:",
+        error
+      );
       throw new Error("No se pudo obtener la lista de movimientos de puntos");
     }
   }
