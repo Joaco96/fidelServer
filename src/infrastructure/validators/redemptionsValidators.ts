@@ -37,6 +37,7 @@ export const CreateRedemptionSchema = RedemptionSchema.omit({
   created_at: true,
   updated_at: true,
   is_delivered: true,
+  qr_code:true,
 });
 export const CreateRedemtionResponseSchema = z.object({
   message: z.string(),

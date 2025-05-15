@@ -3,7 +3,7 @@ import { generateToken } from './jwtService';
 import { UUID } from 'crypto';
 
 export const getQr = async (data: string): Promise<string> => {    
-    return await QRCode.toDataURL(data);
+    return await QRCode.toDataURL(data,{errorCorrectionLevel:"L", version: 9});
 }
 
 export const generateQr = (baseUrl: string, route: string, id: UUID): Promise<string> => {
