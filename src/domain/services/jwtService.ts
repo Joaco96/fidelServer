@@ -8,6 +8,7 @@ export interface CustomJwtPayload extends JwtPayload {
   role: number;
   name: string;
   email: string;
+  dni: string;
   createdAt: Date;
 }
 

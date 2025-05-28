@@ -22,6 +22,7 @@ export class LoginUser<T> {
         role: user.role_id,
         name: user.name,
         email: user.email,
+        dni: user.dni,
         createdAt: user.createdAt,
       });
     });
