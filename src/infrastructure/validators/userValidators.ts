@@ -12,7 +12,6 @@ export const UserSchema = z.object({
   role_id: z.number().openapi({ example: 0 }),
   dni: z
     .string()
-    .min(1, "El nombre no puede estar vacío")
     .openapi({ type: "string" }),
   name: z
     .string()
