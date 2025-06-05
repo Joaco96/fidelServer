@@ -5,8 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "dev": "nodemon --watch src --exec tsx src/index.ts",
-    "build": "tsc",
-    "start": "node dist/index.js",
+    "build": "tsc --noEmit && tsup src/index.ts --format esm --out-dir dist --splitting",
+    "start": "node dist/index.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "JyS",
@@ -14,7 +14,7 @@
   "dependencies": {
     "@asteasolutions/zod-to-openapi": "^7.3.0",
     "bcrypt": "^5.1.1",
-    "chalk": "^4.1.2",
+    "chalk": "^5.4.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
@@ -38,6 +38,7 @@
     "@types/pg": "^8.11.11",
     "@types/qrcode": "^1.5.5",
     "@types/swagger-ui-express": "^4.1.8",
+    "tsup": "^8.5.0",
     "tsx": "^4.19.3"
   }
 }

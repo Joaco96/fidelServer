@@ -39,7 +39,7 @@ const bootstrapServer = async () => {
 
   app.listen(PORT, (err) => {
     if (err) return console.log(`❌ Error iniciando el servidor: ${err}`);
-    console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
+    console.log(`🚀 Servidor corriendo en puerto ${PORT}`);
   });
 };
 
