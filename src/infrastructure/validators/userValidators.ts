@@ -35,7 +35,6 @@ export const CreateUserSchema = UserSchema.omit({
   id: true,
   role_id: true,
   points_balance: true,
-  dni: true,
   created_at: true, 
   updated_at: true
 });
