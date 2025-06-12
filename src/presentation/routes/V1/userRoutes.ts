@@ -12,7 +12,7 @@ const router = Router();
 router.get(
   "/",
   authMiddleware,
-  authorizedRole(RoleIds.ADMIN),
+  authorizedRole(RoleIds.EMPLOYEE),
   validateSchema(UsersFiltersSchema, "query"), 
   asyncHandler(UserController.getAllUsers)
 );
