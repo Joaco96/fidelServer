@@ -24,4 +24,10 @@ router.get(
   asyncHandler(TicketController.getTickets)
 );
 
+router.get(
+  "/points-rate", 
+  authMiddleware, 
+  asyncHandler(TicketController.getPointsRate)
+);
+
 export default router;

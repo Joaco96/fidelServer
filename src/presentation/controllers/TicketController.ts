@@ -6,6 +6,7 @@ import { PointRepositorySequelize } from "../../infrastructure/repositories/Poin
 import { SequelizeUnitOfWork } from "../../infrastructure/transactions/SequelizeUnitOfWork";
 import { sequelize } from "../../infrastructure/db/sequelize";
 import { GetTickets } from "../../application/use-cases/Tickets/GetTicket";
+import { Tickets } from "../../domain/entities/Tickets";
 
 const ticketRepository = new TicketRepositorySequelize();
 const userRepository = new UserRepositorySequelize();
@@ -22,16 +23,18 @@ const getTickets = new GetTickets(ticketRepository, unitOfWork);
 export class TicketController {
   static async create(req: Request, res: Response) {
     const createdTicket = await createTicket.execute(req.body);
-    res
-      .status(201)
-      .sendResponse({
-        message: "Ticket creado con éxito",
-        points_earned: createdTicket.points_earned,
-      });
+    res.status(201).sendResponse({
+      message: "Ticket creado con éxito",
+      points_earned: createdTicket.points_earned,
+    });
   }
 
   static async getTickets(req: Request, res: Response) {
     const tickets = await getTickets.execute(req.query);
     res.status(200).sendResponse(tickets);
+  }
+
+  static async getPointsRate(_req: Request, res: Response) {
+    res.status(200).sendResponse({ rate: Tickets.point_rate });
   }
 }

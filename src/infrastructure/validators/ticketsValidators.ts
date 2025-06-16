@@ -35,3 +35,7 @@ export const GetFilteredTicketsSchema = createFilterSchemaFromBase(TicketSchema)
 export const GetTicketsResponseSchema =  z.array(
   TicketSchema.extend({ store: StoreSchema })
 );
+
+export const GetPointsRate = z.object({
+  rate: z.number().openapi({ example: 0 }),
+})

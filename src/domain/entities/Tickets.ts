@@ -4,6 +4,7 @@ import { Stores } from "./Stores";
 export class Tickets {
   public points_earned: number;
   public store?: Stores;
+  public static point_rate: number = 1/10;
 
   constructor(
     public id: string,
@@ -17,6 +18,6 @@ export class Tickets {
   }
 
   private calculatePoints(amountSpent: number): number {
-    return Math.floor(amountSpent / 10);
+    return Math.floor(amountSpent * Tickets.point_rate);
   }
 }

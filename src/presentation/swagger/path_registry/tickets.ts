@@ -7,6 +7,7 @@ import {
   CreateTicketResponseSchema,
   CreateTicketSchema,
   GetFilteredTicketsSchema,
+  GetPointsRate,
   GetTicketsResponseSchema,
 } from "../../../infrastructure/validators/ticketsValidators";
 
@@ -67,6 +68,31 @@ export const ticketRegistry: RouteConfig[] = [
       },
       400: {
         description: "Error de validación",
+        content: {
+          "application/json": {
+            schema: errorApiSchema,
+          },
+        },
+      },
+    },
+  },
+  {
+    method: "get",
+    path: `/api/v1/tickets/points-rate`,
+    tags: TICKET_CONTROLLER_TAG,
+    summary: "Obtiene la tasa de calculo para conversion de tickets en puntos",
+    security: [{ bearerAuth: [] }], // Para que se vea el candado en swagger y poder autenticar
+    responses: {
+      200: {
+        description: "Tasa obtenida exitosamente",
+        content: {
+          "application/json": {
+            schema: makeApiResponseSchema(GetPointsRate),
+          },
+        },
+      },
+      400: {
+        description: "Error interno del servidor",
         content: {
           "application/json": {
             schema: errorApiSchema,
