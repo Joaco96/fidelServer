@@ -43,6 +43,17 @@ export class UserRepositorySequelize implements UserRepository {
     }
   }
 
+  async findByDni(dni: string): Promise<User | null> {
+    try {
+      const userModel = await UsersModel.findOne({ where: { dni } });
+
+      return userModel ? UserMapper.toDomain(userModel) : null;
+    } catch (error) {
+      console.error("Error al buscar por dni:", error);
+      throw new Error("No se pudo encontrar al usuario por dni");
+    }
+  }
+
   async delete(id: string, tx: Transaction): Promise<void> {
     try {
       await UsersModel.destroy({ where: { id }, transaction: tx });

@@ -11,11 +11,17 @@ export class CreateUser<T> {
 
   async execute(user: User): Promise<User> {
     return await this.uow.runInTransaction(async (transaction) => {
-      const foundUser = await this.userRepository.findByEmail(
+      const foundUserByEmail = await this.userRepository.findByEmail(
         user.email,
         transaction
       );
-      if (foundUser) throw new Error("El email ya esta en uso");
+      const foundUserByDni = await this.userRepository.findByDni(
+        user.dni,
+        transaction
+      );
+      
+      if (foundUserByEmail) throw new Error("El email ya esta en uso");
+      if (foundUserByDni) throw new Error("Dni ya registrado");
 
       const hashedPassword = await hashPassword(user.password);
 
