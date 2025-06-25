@@ -6,6 +6,7 @@ import { asyncHandler } from "../../../utils/asyncHandler";
 import { authMiddleware } from "../../../infrastructure/middlewares/authMiddleware";
 import { authorizedRole } from "../../../infrastructure/middlewares/authorizedRole";
 import { RoleIds } from "../../../domain/entities/Role";
+import { sameUserOrAdminMiddleware } from "../../../infrastructure/middlewares/sameUserOrAdminMiddleware";
 
 const router = Router();
 
@@ -21,6 +22,7 @@ router.get(
   "/points/:id",
   authMiddleware,
   validateSchema(GetUserPointsParamsSchema, "params"), 
+  sameUserOrAdminMiddleware,
   asyncHandler(UserController.getUserPoints)
 );
 
@@ -39,7 +41,8 @@ router.post(
 router.delete(
   "/:id", 
   authMiddleware,
-  validateSchema(DeleteUserParamsSchema, "params"), 
+  validateSchema(DeleteUserParamsSchema, "params"),
+  sameUserOrAdminMiddleware,
   asyncHandler(UserController.delete)
 );
 
@@ -47,7 +50,8 @@ router.patch(
   "/:id", 
   authMiddleware, 
   validateSchema(UpdateUserParamsSchema, "params"), 
-  validateSchema(UpdateUserSchema), 
+  validateSchema(UpdateUserSchema),
+  sameUserOrAdminMiddleware,
   asyncHandler(UserController.update)
 );
 

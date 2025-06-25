@@ -41,11 +41,6 @@ export class UserController {
 
   static async delete(req: RequestWithUser, res: Response) {
     const { id } = req.params;
-    const isAdmin = req.user?.role === RoleIds.ADMIN;
-    const isSameUser = req.user?.userId === id;
-    if (!isAdmin && !isSameUser) {
-      throw new Error("No puedes realizar esta operación");
-    }
     await deleteUser.execute(id);
     res.status(200).sendResponse([]);
   }
@@ -57,11 +52,6 @@ export class UserController {
 
   static async update(req: RequestWithUser, res: Response) {
     const { id } = req.params;
-    const isAdmin = req.user?.role === RoleIds.ADMIN;
-    const isSameUser = req.user?.userId === id;
-    if (!isAdmin && !isSameUser) {
-      throw new Error("No puedes realizar esta operación");
-    }
     const updatedUser = await updateUser.execute(id, req.body);
     res.status(200).sendResponse(updatedUser);
   }
@@ -72,18 +62,13 @@ export class UserController {
 
     const validRole = Object.values(RoleIds).includes(role_id);
     if (!validRole) throw new Error("Rol inválido");
-    
+
     const updatedUser = await updateUser.execute(id, req.body);
     res.status(200).sendResponse(updatedUser);
   }
 
   static async getUserPoints(req: RequestWithUser, res: Response) {
     const { id } = req.params;
-    const isAdmin = req.user?.role === RoleIds.ADMIN;
-    const isSameUser = req.user?.userId === id;
-    if (!isAdmin && !isSameUser) {
-      throw new Error("No puedes realizar esta operación");
-    }
     const user = await getUserById.execute(id);
     res.status(200).sendResponse({ points_balance: user?.points_balance });
   }
