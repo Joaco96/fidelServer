@@ -226,7 +226,7 @@ export const userRegistry: RouteConfig[] = [
       params: DeleteUserParamsSchema,
     },
     responses: {
-      204: {
+      200: {
         description: "Usuario eliminado exitosamente",
         content: {
           "application/json": {
