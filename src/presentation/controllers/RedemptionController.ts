@@ -9,6 +9,7 @@ import { StockRepositorySequelize } from "../../infrastructure/repositories/Stoc
 import { RewardRepositorySequelize } from "../../infrastructure/repositories/RewardRepositorySequelize";
 import { CreateStock } from "../../application/use-cases/Stock/CreateStock";
 import { GetRedemptions } from "../../application/use-cases/Redemptions/GetRedemptions";
+import { UpdateRedemptionStatus } from "../../application/use-cases/Redemptions/UpdateRedemptionStatus";
 
 const unitOfWork = new SequelizeUnitOfWork(sequelize);
 const redemptionRepository = new RedemptionRepositorySequelize();
@@ -16,16 +17,24 @@ const userRepository = new UserRepositorySequelize();
 const pointRepository = new PointRepositorySequelize();
 const rewardRepository = new RewardRepositorySequelize();
 const stockRepository = new StockRepositorySequelize();
-const createStock = new CreateStock(stockRepository, rewardRepository, unitOfWork);
+const createStock = new CreateStock(
+  stockRepository,
+  rewardRepository,
+  unitOfWork
+);
 const createRedemption = new CreateRedemption(
-  redemptionRepository, 
-  pointRepository, 
-  userRepository, 
-  rewardRepository, 
+  redemptionRepository,
+  pointRepository,
+  userRepository,
+  rewardRepository,
   unitOfWork,
   createStock
 );
 const getAllRedemptions = new GetRedemptions(redemptionRepository, unitOfWork);
+const updateRedemptionStatus = new UpdateRedemptionStatus(
+  redemptionRepository,
+  unitOfWork
+);
 
 export class RedemptionController {
   static async create(req: Request, res: Response) {
@@ -36,8 +45,17 @@ export class RedemptionController {
     });
   }
 
+  static async update(req: Request, res: Response) {
+    const { id } = req.params;
+    const updatedRedemption = await updateRedemptionStatus.execute(
+      id,
+      req.body
+    );
+    res.status(200).sendResponse(updatedRedemption);
+  }
+
   static async getAll(req: Request, res: Response) {
-      const redemptions = await getAllRedemptions.execute(req.query);
-      res.status(200).sendResponse(redemptions);
-    }
+    const redemptions = await getAllRedemptions.execute(req.query);
+    res.status(200).sendResponse(redemptions);
+  }
 }

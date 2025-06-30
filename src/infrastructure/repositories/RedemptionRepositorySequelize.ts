@@ -41,6 +41,61 @@ export class RedemptionRepositorySequelize implements RedemptionRepository {
     }
   }
 
+  async findBy<T>(
+    key: string,
+    value: T,
+    transaction?: Transaction
+  ): Promise<Array<Redemptions>> {
+    try {
+      const foundRedemptionByKey = await RedemptionsModel.findAll({
+        where: { [key]: value },
+        transaction,
+        include: [
+          { model: PointsModel, as: "point" },
+          { model: StocksModel, as: "stock" },
+        ],
+      });
+
+      return foundRedemptionByKey.length
+        ? foundRedemptionByKey.map((fr) => RedemptionsMapper.toDomain(fr))
+        : [];
+    } catch (error) {
+      console.error("Error al buscar el canje:", error);
+      throw new Error("No se pudo encontrar el canje");
+    }
+  }
+
+  async update(
+    id: string,
+    data: Partial<Redemptions>,
+    tx: Transaction
+  ): Promise<Redemptions> {
+    try {
+      await RedemptionsModel.update(data, {
+        where: { id },
+        transaction: tx,
+        returning: true,
+      });
+
+      const updatedRedemption = await RedemptionsModel.findByPk(id, {
+        transaction: tx,
+        include: [
+          { model: PointsModel, as: "point" },
+          { model: StocksModel, as: "stock" },
+        ],
+      });
+
+      if (!updatedRedemption) {
+        throw new Error("No se pudo obtener el canje actualizado");
+      }
+
+      return RedemptionsMapper.toDomain(updatedRedemption);
+    } catch (error) {
+      console.error("Error al actualizar el canje", error);
+      throw new Error("No se pudo actualizar el canje");
+    }
+  }
+
   async findAll(
     transaction?: Transaction,
     filters: Partial<Redemptions> = {}

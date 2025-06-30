@@ -1,5 +1,6 @@
 import { User } from "../../../domain/entities/User";
 import { UserRepository } from "../../../domain/repositories/userRepository";
+import { hashPassword } from "../../../domain/services/cryptoService";
 import { UnitOfWork } from "../../../domain/transaction";
 
 export class UpdateUser<T> {
@@ -15,6 +16,10 @@ export class UpdateUser<T> {
         transaction
       );
       if (!foundUser) throw new Error("Usuario inexistente");
+      if (data.password) {
+        const hashedPassword = await hashPassword(data.password);
+        data.password = hashedPassword;
+      } 
       return await this.userRepository.update(id, data, transaction);
     });
   }

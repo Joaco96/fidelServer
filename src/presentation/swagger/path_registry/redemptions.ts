@@ -8,6 +8,9 @@ import {
   CreateRedemtionResponseSchema,
   GetRedemptionSchema,
   RedemptionFiltersSchema,
+  RedemptionSchema,
+  UpdateRedemptionParamsSchema,
+  UpdateRedemptionSchema,
 } from "../../../infrastructure/validators/redemptionsValidators";
 
 const REDEMPTIONS_CONTROLLER_TAG = ["Redemptions"];
@@ -62,6 +65,41 @@ export const redemptionsRegistry: RouteConfig[] = [
         content: {
           "application/json": {
             schema: makeApiResponseSchema(CreateRedemtionResponseSchema),
+          },
+        },
+      },
+      400: {
+        description: "Error de validación",
+        content: {
+          "application/json": {
+            schema: errorApiSchema,
+          },
+        },
+      },
+    },
+  },
+  {
+    method: "patch",
+    path: `/api/v1/redemptions/{id}`,
+    tags: REDEMPTIONS_CONTROLLER_TAG,
+    summary: "Actualiza el estado de un canje",
+    security: [{ bearerAuth: [] }],
+    request: {
+      body: {
+        content: {
+          "application/json": {
+            schema: UpdateRedemptionSchema,
+          },
+        },
+      },
+      params: UpdateRedemptionParamsSchema,
+    },
+    responses: {
+      200: {
+        description: "Estado del canje actualizado exitosamente",
+        content: {
+          "application/json": {
+            schema: makeApiResponseSchema(RedemptionSchema),
           },
         },
       },
