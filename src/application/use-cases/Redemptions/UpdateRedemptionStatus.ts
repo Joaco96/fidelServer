@@ -17,6 +17,7 @@ export class UpdateRedemptionStatus<T> {
       );
 
       if (!foundRedemption.length) throw new Error("Canje inexistente");
+      if (foundRedemption[0].is_delivered) throw new Error("Beneficio ya entregado")
       return await this.redemptionRepository.update(id, data, transaction);
     });
   }
